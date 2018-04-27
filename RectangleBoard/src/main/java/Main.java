@@ -22,7 +22,7 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/GUI/rectangleBoard.fxml"));
 		TabPane anchorPane = loader.load();
 		Scene scene = new Scene(anchorPane, 800, 600);
-
+		stage.setTitle("Wire World 2018");
 		stage.setScene(scene);
 
 		stage.show();

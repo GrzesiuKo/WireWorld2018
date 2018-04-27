@@ -1,4 +1,5 @@
 package Cell;
+
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -9,7 +10,7 @@ public class CellMaker {
 		Cell cell = new Cell(w, h, x, y, id);
 
 		EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
-
+			
 			@Override
 			public void handle(MouseEvent event) {
 				/*if(event.isPrimaryButtonDown())*/
@@ -18,6 +19,8 @@ public class CellMaker {
 
 		};
 		cell.getCell().setOnMouseEntered(handler);
+		cell.getCell().setOnMouseClicked(handler);
+		
 
 		newCell = cell;
 
