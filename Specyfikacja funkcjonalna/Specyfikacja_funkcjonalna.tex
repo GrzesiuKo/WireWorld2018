@@ -1,0 +1,78 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\selectlanguage{polish}
+\usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
+\makeatletter
+\newcommand{\linia}{\rule{\linewidth}{0.4mm}}
+\renewcommand{\maketitle}{\begin{titlepage}
+    \vspace*{2cm}
+    \begin{center}\LARGE
+    Politechnika Warszawska\\
+    Wydział Elektryczny\\
+    \end{center}
+    \vspace{5cm}
+    \noindent\linia
+    \begin{center}
+      \LARGE \textsc{\@title}
+         \end{center}
+     \linia
+    \vspace{0.5cm}
+    \begin{flushright}
+    \begin{minipage}{5cm}
+    \textit{Autorzy:}\\
+    \normalsize \textsc{\@author} \par
+    \end{minipage}
+    \vspace{5cm}
+     \end{flushright}
+    \vspace*{\stretch{6}}
+    \begin{center}
+    \@date
+    \end{center}
+  \end{titlepage}%
+}
+\makeatother
+\author{Grzegorz Kopyt\\
+Daniel Sporysz}
+\title{Specyfikacja Funkcjonalna \\
+"Automat Komórkowy"}
+\begin{document}
+
+\maketitle
+
+
+\tableofcontents
+\vspace{1cm}
+\noindent\linia
+\section{Opis działania}
+
+
+\noindent\linia
+\section{Funkcje}
+Program oferuje następujące funkcje:
+\begin{itemize}
+\item Załadowanie planszy z pliku png
+\item Kontrola nad przebiegiem animacji: pauzowanie, uruchamianie, powrót do początkowej
+\item Własnoręczna edycja planszy w trakcie pracy programu.
+\item 
+\end{itemize}
+
+
+
+\noindent\linia
+\section{Obsługa}
+
+
+
+\noindent\linia
+\section{Sytuacje wyjątkowe}
+
+
+
+\end{document}
+
+
+
