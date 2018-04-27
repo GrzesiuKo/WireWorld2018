@@ -1,3 +1,4 @@
+package Cell;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
