@@ -1,0 +1,16 @@
+\select@language {polish}
+\select@language {polish}
+\contentsline {section}{\numberline {1}Diagram klas i pakiet\IeC {\'o}w}{1}
+\contentsline {section}{\numberline {2}Opis klas i pakiet\IeC {\'o}w}{1}
+\contentsline {subsection}{\numberline {2.1}GUI}{1}
+\contentsline {subsubsection}{\numberline {2.1.1}Pola}{2}
+\contentsline {subsubsection}{\numberline {2.1.2}Metody}{2}
+\contentsline {subsection}{\numberline {2.2}Logic}{2}
+\contentsline {subsubsection}{\numberline {2.2.1}Pola}{2}
+\contentsline {subsubsection}{\numberline {2.2.2}Metody}{2}
+\contentsline {subsection}{\numberline {2.3}IO}{2}
+\contentsline {subsubsection}{\numberline {2.3.1}Pola}{2}
+\contentsline {subsubsection}{\numberline {2.3.2}Metody}{2}
+\contentsline {section}{\numberline {3}Przep\IeC {\l }yw Sterowania}{2}
+\contentsline {section}{\numberline {4}Testy klas i pakiet\IeC {\'o}w}{2}
+\contentsline {subsection}{\numberline {4.1}GUI}{2}
