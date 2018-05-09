@@ -41,6 +41,7 @@ public class MyBoard extends Application {
 
                 recMap.put("" + x + y, tmpRec);
                 recList.add(tmpRec);
+
                 EventHandler<MouseEvent> eventHandler = e -> {
                     tmpRec.setFill(color);
                 };

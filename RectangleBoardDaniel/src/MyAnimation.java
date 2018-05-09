@@ -50,6 +50,7 @@ public class MyAnimation extends Thread {
                 }
             }
             try {
+                faze = !faze;
                 x = y = 0;
                 Thread.sleep(500);
             } catch (InterruptedException e) {
