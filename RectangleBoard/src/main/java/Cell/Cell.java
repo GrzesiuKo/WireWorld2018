@@ -8,12 +8,18 @@ public class Cell {
 	int height;
 	int x;
 	int y;
+	Integer id;
 	Rectangle cell;
 
-	public Cell(int w, int h, int x, int y, String id) {
+	@Override
+	public int hashCode() {
+		return id;
+	}
+	
+	public Cell(int w, int h, int x, int y, Integer id) {
 		color = 0;
 		Rectangle cell = new Rectangle();
-		cell.setId(id);
+		cell.setId(id.toString());
 		this.cell = cell;
 		width = w;
 		height = h;
@@ -25,7 +31,6 @@ public class Cell {
 		cell.setHeight(h);
 		cell.setStroke(Paint.valueOf("#000000"));
 		cell.setFill(Paint.valueOf("#fffdfd"));
-		cell.setId(id);
 	}
 
 	public Rectangle getCell() {
@@ -74,6 +79,14 @@ public class Cell {
 
 	public void setEmpty() {
 		cell.setFill(Paint.valueOf("#fffdfd"));
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	};
 
 }

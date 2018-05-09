@@ -66,19 +66,74 @@ Daniel Sporysz}
 
 
 \noindent\linia
-\section{Opis klas i pakietów}
+\section{Pakiet GUI}
 
 
 
-\subsection{GUI}
-krótki opis klasy
+\subsection{Main}
+Rozszerza klasę Application z javafx.
 \subsubsection{Pola}
-
+brak
 \subsubsection{Metody}
+\begin{itemize}
+\item \textbf{main}
+
+Standardowo wywołuje metodę launch.
+\item \textbf{start}
+
+Wczytuje plik MainScreen.fxml, przygotowuje całą scenę i wyświetla ją w wymiarach (800, 600).
+\end{itemize}
+
+
+\subsection{MainController}
+Kontroler sceny MainScreen.fxml.
+\subsubsection{Pola}
+\begin{itemize}
+\item GridPane gridPane
+\item JFXButton load
+\item JFXButton go
+\item JFXButton pause
+\item JFXButton halt
+\item JFXButton clear
+\item JFXButton color
+\item Button figure1
+\item Button figure2
+\item Button figure3
+\item Button figure4
+\item Button figure5
+\item Button figure6
+\item JFXTextField path
+\end{itemize}
+\subsubsection{Metody}
+\begin{itemize}
+\item \textbf{loadFile}
+
+Standardowo wywołuje metodę launch.
+\item \textbf{goAnimation}
+
+Uruchamia animacje wywołując metodę z klasy Animation.
+\item \textbf{pauseAnimation}
+
+Pauzeuje animacje metodą z klasy Animation.
+\item \textbf{haltAnimation}
+
+Powoduje powrót animacji do punktu początkowego.
+\item \textbf{clear}
+
+Zmienia kolor każdej komórki w tablicy na biały.
+\item \textbf{colorMenu}
+
+Wyświetla okno z pliku ColorMenu.fxml
+\end{itemize}
+
+
+
 
 
 
 \noindent\linia
+\section{Pakiet Logic}
+
 \subsection{Logic}
 krótki opis klasy
 \subsubsection{Pola}
@@ -88,7 +143,7 @@ krótki opis klasy
 
 
 \noindent\linia
-
+\section{Pakiet IO}
 \subsection{IO}
 krótki opis klasy
 \subsubsection{Pola}
@@ -99,6 +154,34 @@ krótki opis klasy
 
 \noindent\linia
 
+\section{Pakiet Board}
+
+\subsection{BoardMaker}
+krótki opis klasy
+\subsubsection{Pola}
+
+\subsubsection{Metody}
+
+
+
+
+\subsection{Factory}
+krótki opis klasy
+\subsubsection{Pola}
+
+\subsubsection{Metody}
+
+\noindent\linia
+
+\section{Pakiet Animation}
+
+\subsection{Animation}
+krótki opis klasy
+\subsubsection{Pola}
+
+\subsubsection{Metody}
+
+\noindent\linia
 \section{Przepływ Sterowania}
 
 

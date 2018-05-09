@@ -30,7 +30,7 @@ public class Factory {
 			if (it > 0 && board.get(it - 1).getCell().getY() == y - cellHeight + 1
 					&& board.get(it - 1).getCell().getX() == x - cellWidth + 1)
 				return;
-			maker.makeCell(cellWidth, cellHeight, xc, yc, id.toString());
+			maker.makeCell(cellWidth, cellHeight, xc, yc, id);
 			board.add(maker.getNewCell());
 			xc += cellWidth;
 			id++;
