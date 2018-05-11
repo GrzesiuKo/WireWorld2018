@@ -188,7 +188,14 @@ Kontroler sceny ColorScreen.fxml.
 \item void \textbf{setConductor()}
 \item String \textbf{getEmpty()}
 \item void \textbf{setEmpty()}
-
+\subsubsection{Konstruktor}
+Domyślne kolory to:
+\begin{itemize}
+\item head - żółty
+\item tail - czerwony
+\item conductor - czarny
+\item empty - biały
+\end{itemize}
 \end{itemize}
 \noindent\linia
 
@@ -221,15 +228,32 @@ Odpowiada za stworzenie tablicy obiektów klasy Rectangle (\textit{board}). Tabl
 \end{itemize}
 \subsubsection{Metody}
 \begin{itemize}
-\item void \textbf{makeBoard(int, GridPane)}
+\item void \textbf{makeBoard(Template, Colors, GridPane)}
 
-Metoda tworzy kwadratową tablicę obiektów klasy Rectangle, o długości boku podanej jako argument (skalą jest jeden kwadrat). Wymiary obiektów Rectangle wynoszą (20, 20). Tablica tworzona jest poprzez dodanie obiektów do  GridPane. Docelowy GridPane znajduje się w klasie MainScreenController.
+Metoda tworzy tablicę \textit{board} obiektów klasy Rectangle na podstawie wzoru podanego w Template o 30 kwadratach w rzędzie i 30 kwadratach w kolumnie.
+Wymiary obiektów Rectangle wynoszą (20, 20).
+Wszystkie obiekty dodane zostają do kolekcji \textit{board}.
+Obiektom zostaje nadane ID jako kolejne liczby naturalne całkowite zaczynając od 1.
+Kolor wypełnienia obiektów nadawany jest zgodnie z zawartością Colors, obramowanie - czarne.
+Tablica tworzona jest poprzez dodanie obiektów do  GridPane.
+Docelowy GridPane znajduje się w klasie MainScreenController.
+\item void \textbf{makeBoard(Colors, GridPane)}
+
+Metoda tworzy tablicę \textit{board} obiektów klasy Rectangle o 30 kwadratach w rzędzie i 30 kwadratach w kolumnie.
+Wymiary obiektów Rectangle wynoszą (20, 20).
+Wszystkie obiekty dodane zostają do kolekcji \textit{board}.
+Obiektom zostaje nadane ID jako kolejne liczby naturalne całkowite zaczynając od 1.
+Kolor wypełnienia obiektów nadawany jest zgodnie z zawartością Colors, obramowanie - czarne.
+Tablica tworzona jest poprzez dodanie obiektów do  GridPane.
+Docelowy GridPane znajduje się w klasie MainScreenController.
+
+\item ArrayList<Rectangle> \textbf{getBoard()}
 \end{itemize}
 
 
 
 \subsection{Template}
-Klasa reprezentująca wzór obiektu do wstawiania na tablice \textit{board}. Wzór przechowywany jest w tablicy \textit{template} jako ciąg liczb 0(pusty), 1(przewodnik).
+Klasa reprezentująca wzór obiektu do wstawiania na tablice \textit{board}. Wzór przechowywany jest w tablicy \textit{template} jako ciąg liczb 0(pusty), 1(przewodnik), 2(ogon), 3(głowa). Przy tworzeniu wzorów należy uwzględnić to, że rozmiar tablicy wynosi 30 kwadratów na 30 kwadratów. 
 \subsubsection{Pola}
 \begin{itemize}
 \item ArrayList<Integer> \textit{template}
