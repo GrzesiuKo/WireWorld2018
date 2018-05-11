@@ -75,14 +75,13 @@ Daniel Sporysz}
 \noindent\linia
 \section{Pakiet GUI}
 
-Zawiera dodatkową bibliotekę: jfoenix.
+Wykonany przy pomocy technologii javafx, zawiera dodatkową bibliotekę: jfoenix.
 
 \subsection{Pliki .fxml:}
 \begin{itemize}
 \item MainScreen.fxml
 \item ColorScreen.fxml
 \end{itemize}
-\noindent\linia
 
 \subsection{GUI}
 Rozszerza klasę Application z javafx.
@@ -103,39 +102,39 @@ Wczytuje plik MainScreen.fxml, przygotowuje całą scenę i wyświetla ją w wym
 Kontroler sceny MainScreen.fxml.
 \subsubsection{Pola}
 \begin{itemize}
-\item GridPane gridPane
-\item JFXButton load
-\item JFXButton go
-\item JFXButton pause
-\item JFXButton halt
-\item JFXButton clear
-\item JFXButton color
-\item Button figure1
-\item Button figure2
-\item Button figure3
-\item Button figure4
-\item Button figure5
-\item Button figure6
-\item JFXTextField path
+\item GridPane \textit{gridPane}
+\item JFXButton \textit{load}
+\item JFXButton \textit{go}
+\item JFXButton \textit{pause}
+\item JFXButton \textit{halt}
+\item JFXButton \textit{clear}
+\item JFXButton \textit{color}
+\item Button \textit{figure1}
+\item Button \textit{figure2}
+\item Button \textit{figure3}
+\item Button \textit{figure4}
+\item Button \textit{figure5}
+\item Button \textit{figure6}
+\item JFXTextField \textit{path}
 \end{itemize}
 \subsubsection{Metody}
 \begin{itemize}
-\item \textbf{loadFile}
+\item void \textbf{loadFile()}
 
 Standardowo wywołuje metodę launch.
-\item \textbf{goAnimation}
+\item void \textbf{goAnimation()}
 
 Uruchamia animacje wywołując metodę z klasy Animation.
-\item \textbf{pauseAnimation}
+\item void \textbf{pauseAnimation()}
 
-Pauzeuje animacje metodą z klasy Animation.
-\item \textbf{haltAnimation}
+Pauzuje animacje metodą z klasy Animation.
+\item void \textbf{haltAnimation()}
 
 Powoduje powrót animacji do punktu początkowego.
-\item \textbf{clear}
+\item void \textbf{clear()}
 
 Zmienia kolor każdej komórki w tablicy na biały.
-\item \textbf{colorMenu}
+\item void \textbf{colorMenu()}
 
 Wyświetla okno z pliku ColorMenu.fxml
 \end{itemize}
@@ -148,18 +147,18 @@ Wyświetla okno z pliku ColorMenu.fxml
 Kontroler sceny ColorScreen.fxml.
 \subsubsection{Pola}
 \begin{itemize}
-\item ColorPicker head
-\item ColorPicker tail
-\item ColorPicker conductor
-\item ColorPicker empty
+\item ColorPicker \textit{head}
+\item ColorPicker \textit{tail}
+\item ColorPicker \textit{conductor}
+\item ColorPicker \textit{empty}
 
 \end{itemize}
 \subsubsection{Metody}
 \begin{itemize}
-\item \textbf{back}
+\item void \textbf{back()}
 
 Powoduje powrót do MainScreen.
-\item \textbf{applyColors}
+\item void \textbf{applyColors()}
 
 Pobiera z obiektów klasy ColorPicker informacje o kolorach i przekazuje je klasie Colors.
 
@@ -181,14 +180,14 @@ Kontroler sceny ColorScreen.fxml.
 \end{itemize}
 \subsubsection{Metody}
 \begin{itemize}
-\item \textbf{getHead}
-\item \textbf{setHead}
-\item \textbf{getTail}
-\item \textbf{setTail}
-\item \textbf{getConductor}
-\item \textbf{setConductor}
-\item \textbf{getEmpty}
-\item \textbf{setEmpty}
+\item String \textbf{getHead()}
+\item void \textbf{setHead()}
+\item String \textbf{getTail()}
+\item void \textbf{setTail()}
+\item String \textbf{getConductor()}
+\item void \textbf{setConductor()}
+\item String \textbf{getEmpty()}
+\item void \textbf{setEmpty()}
 
 \end{itemize}
 \noindent\linia
@@ -213,29 +212,110 @@ krótki opis klasy
 \section{Pakiet Board}
 
 \subsection{BoardMaker}
-Odpowiada za stworzenie tablicy obiektów klasy Rectangle. Tablica ta będzie służyła jako obszar edytowany przez użytkownika, a także będzie na niej wyświetlana animacja.
+Odpowiada za stworzenie tablicy obiektów klasy Rectangle (\textit{board}). Tablica ta będzie służyła jako obszar edytowany przez użytkownika, a także będzie na niej wyświetlana animacja.
 \subsubsection{Pola}
+\begin{itemize}
+\item ArrayList<Rectangle> \textit{board}
+\item int \textit{width}
+\item int \textit{height}
+\end{itemize}
+\subsubsection{Metody}
+\begin{itemize}
+\item void \textbf{makeBoard(int, GridPane)}
+
+Metoda tworzy kwadratową tablicę obiektów klasy Rectangle, o długości boku podanej jako argument (skalą jest jeden kwadrat). Wymiary obiektów Rectangle wynoszą (20, 20). Tablica tworzona jest poprzez dodanie obiektów do  GridPane. Docelowy GridPane znajduje się w klasie MainScreenController.
+\end{itemize}
+
+
+
+\subsection{Template}
+Klasa reprezentująca wzór obiektu do wstawiania na tablice \textit{board}. Wzór przechowywany jest w tablicy \textit{template} jako ciąg liczb 0(pusty), 1(przewodnik).
+\subsubsection{Pola}
+\begin{itemize}
+\item ArrayList<Integer> \textit{template}
+\item int \textit{width}
+\item int \textit{height}
+\end{itemize}
 
 \subsubsection{Metody}
+\begin{itemize}
+\item Template \textbf{getTemplate()}
+\item void \textbf{setTemplate(ArrayList<Integer>)}
+\item void \textbf{setWidth(int)}
+\item int \textbf{getWidth()}
+\item void \textbf{setHeight(int)}
+\item int \textbf{getHeight()}
+\end{itemize}
 
 
-
-
-\subsection{Factory}
-krótki opis klasy
+\subsection{Templates}
+Przeznaczeniem klasy jest przechowywanie obiektów klasy template w kolekcji.
 \subsubsection{Pola}
-
+\begin{itemize}
+\item HashMap<String, Template> \textit{templates}
+\end{itemize}
 \subsubsection{Metody}
+\begin{itemize}
+\item Template \textbf{getTemplate(String)}
 
+Metoda otrzymawszy klucz klasy \textit{String} zwraca obiekt klasy Template z kolekcji \textit{templates}.
+\item void \textbf{addTemplate(String, Template)}
+
+Metoda dodaje do kolekcji \textit{templates} obiekt klasy Template i nadaje mu klucz podany jako zmienna klasy String.
+\end{itemize}
 \noindent\linia
 
 \section{Pakiet Generation}
 
-\subsection{Animation}
+
+
+\subsection{GenerationsHandler}
 krótki opis klasy
 \subsubsection{Pola}
-
+\begin{itemize}
+\item typ  \textit{nazwa}
+\end{itemize}
 \subsubsection{Metody}
+\begin{itemize}
+\item typ  \textbf{nazwa}
+
+opis metody
+\end{itemize}
+
+
+
+
+
+
+\subsection{CellularAutomaton}
+krótki opis klasy
+\subsubsection{Pola}
+\begin{itemize}
+\item typ  \textit{nazwa}
+\end{itemize}
+\subsubsection{Metody}
+\begin{itemize}
+\item typ  \textbf{nazwa}
+
+opis metody
+\end{itemize}
+
+
+
+
+\subsection{Rules}
+krótki opis klasy
+\subsubsection{Pola}
+\begin{itemize}
+\item typ  \textit{nazwa}
+\end{itemize}
+\subsubsection{Metody}
+\begin{itemize}
+\item typ  \textbf{nazwa}
+
+opis metody
+\end{itemize}
+
 
 \noindent\linia
 \section{Przepływ Sterowania}
