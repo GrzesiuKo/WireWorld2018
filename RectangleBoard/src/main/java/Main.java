@@ -1,4 +1,5 @@
 
+import controllers.RectangleBoardController;
 import javafx.application.Application;
 
 import javafx.event.EventHandler;
@@ -26,7 +27,6 @@ public class Main extends Application {
 		stage.setScene(scene);
 
 		stage.show();
-
 	}
 
 }

@@ -5,9 +5,7 @@ import Cell.Cell;
 import Cell.Factory;
 import Cell.MouseTracker;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Paint;
 
 public class RectangleBoardController {
 	MouseTracker tracker;

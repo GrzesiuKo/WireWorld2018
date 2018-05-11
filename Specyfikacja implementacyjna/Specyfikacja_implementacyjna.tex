@@ -39,7 +39,7 @@
 \author{Grzegorz Kopyt\\
 Daniel Sporysz}
 \title{Specyfikacja Implementacyjna \\
-"Automat Komórkowy"}
+"WireWorld"}
 
 \usepackage{graphicx}
 \begin{document}
@@ -55,10 +55,17 @@ Daniel Sporysz}
 
 
 
-\section{Diagram klas i pakietów}
+\section{Diagram klas}
 
 
-\includegraphics[width=\textwidth]{Automat2}
+\includegraphics[width=\textwidth]{DiagramKlas}
+
+\noindent\linia
+
+
+\section{Diagram pakietów}
+\includegraphics[width=\textwidth]{DiagramPakiet}
+
 
 
 
@@ -70,7 +77,14 @@ Daniel Sporysz}
 
 Zawiera dodatkową bibliotekę: jfoenix.
 
-\subsection{Main}
+\subsection{Pliki .fxml:}
+\begin{itemize}
+\item MainScreen.fxml
+\item ColorScreen.fxml
+\end{itemize}
+\noindent\linia
+
+\subsection{GUI}
 Rozszerza klasę Application z javafx.
 \subsubsection{Pola}
 brak
@@ -85,7 +99,7 @@ Wczytuje plik MainScreen.fxml, przygotowuje całą scenę i wyświetla ją w wym
 \end{itemize}
 
 
-\subsection{MainController}
+\subsection{MainScreenController}
 Kontroler sceny MainScreen.fxml.
 \subsubsection{Pola}
 \begin{itemize}
@@ -130,27 +144,61 @@ Wyświetla okno z pliku ColorMenu.fxml
 
 
 
-
-\noindent\linia
-
-\section{Pakiet FXML}
+\subsection{ColorScreenController}
+Kontroler sceny ColorScreen.fxml.
+\subsubsection{Pola}
 \begin{itemize}
-\item MainScreen.fxml
-\item ColorMenu.fxml
+\item ColorPicker head
+\item ColorPicker tail
+\item ColorPicker conductor
+\item ColorPicker empty
+
+\end{itemize}
+\subsubsection{Metody}
+\begin{itemize}
+\item \textbf{back}
+
+Powoduje powrót do MainScreen.
+\item \textbf{applyColors}
+
+Pobiera z obiektów klasy ColorPicker informacje o kolorach i przekazuje je klasie Colors.
+
 \end{itemize}
 \noindent\linia
 
-\section{Pakiet Logic}
 
-\subsection{Logic}
-krótki opis klasy
+
+
+\subsection{Colors}
+Kontroler sceny ColorScreen.fxml.
 \subsubsection{Pola}
+\begin{itemize}
+\item String head
+\item String tail
+\item String conductor
+\item String empty
 
+\end{itemize}
 \subsubsection{Metody}
+\begin{itemize}
+\item \textbf{getHead}
+\item \textbf{setHead}
+\item \textbf{getTail}
+\item \textbf{setTail}
+\item \textbf{getConductor}
+\item \textbf{setConductor}
+\item \textbf{getEmpty}
+\item \textbf{setEmpty}
 
-
-
+\end{itemize}
 \noindent\linia
+
+
+
+
+
+
+
 \section{Pakiet IO}
 \subsection{IO}
 krótki opis klasy
@@ -181,7 +229,7 @@ krótki opis klasy
 
 \noindent\linia
 
-\section{Pakiet Animation}
+\section{Pakiet Generation}
 
 \subsection{Animation}
 krótki opis klasy
