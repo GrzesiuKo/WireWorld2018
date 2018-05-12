@@ -121,7 +121,7 @@ Kontroler sceny MainScreen.fxml.
 \begin{itemize}
 \item void \textbf{loadFile()}
 
-Standardowo wywołuje metodę launch.
+Wywołuje metodę, która wczytuje plik tekstowy, którego ścieżkę podano w polu tekstowym.
 \item void \textbf{goAnimation()}
 
 Uruchamia animacje wywołując metodę z klasy Animation.
@@ -348,28 +348,58 @@ opis metody
 
 
 \noindent\linia
-\section{Testy klas}
+\section{Testy klas i GUI}
 
 \subsection{GUI}
-\subsubsection{MainScreenController}
 \begin{description}
 
 \item[Scenariusze] \hfill
+
 \begin{enumerate}
-\item
-\item 
-\item
-\item
-\item 
+\item Należy wpisać w pole tekstowe poprawną ścieżkę pliku (TestLoad.txt) i kliknąć w przycisk Load.
+\item Należy wpisać w pole tekstowe niepoprawną ścieżkę pliku i kliknąć w przycisk Load.
+\item Należy wpisać w pole 101 znaków.
+\item Należy wpisać w pole tekstowe \textit{,,...!fte./tetat/assfs/////     "}.
+\item Należy najechać myszką na planszę edycji.
+\item Należy czterokrotnie kliknąć na dowolne pole planszy.
+\item Należy przejechać po planszy ze wciśniętym lewym przyciskiem myszy.
+\item Należy wyklikać na planszy taki wzór:
+
+\includegraphics[width=\textwidth]{TestGUI1}
+\item Po wykonaniu poprzedniego testu należy wcisnąć przycisk GO.
+\item  Po wykonaniu poprzedniego testu należy wcisnąć przycisk Pause.
+\item Po wykonaniu poprzedniego testu należy wcisnąć przycisk Halt!.
+\item Należy kliknąć w przycisk Clear.
+\item Kiedy na planszy są same białe komórki należy wcisnąć każdy z przycisków GO, Pause, Halt!
+\item Dla każdego przycisku figure, należy: kliknąć na niego, następnie kliknąć na planszy w komórkę o współrzędnych (15,15) i komórkę (30,15)
+\item Należy kliknąć w przycisk Color.
+\item Należy ustawić plansze w sposób przedstawiony na obrazku poniżej.W oknie ColorMenu ustawić cztery różne kolory, następnie kliknąć przycisk back i kliknąć przycisk GO.
+
+\includegraphics[width=\textwidth]{TestGUI2}
 \end{enumerate}
 
 \item[Kryteria oceny poprawnej pracy] \hfill
 \begin{enumerate}
-\item 
-\item
-\item
-\item 
-\item 
+\item Jeśli na planszy pojawi się taki układ pól jak poniżej, test jest zaliczony.
+
+\includegraphics[width=\textwidth]{TestGUI2}
+\item Program powinien wyświetlić w polu tekstowym czerwony komunikat ''Can't open the file.".
+\item Program powinien wyświetlić w polu tekstowym czerwony komunikat ''Can't open the file.".
+\item Program powinien pozwolić na wpisanie tylko 100 znaków.
+\item Kolory nie powinny się zmienić.
+\item Kolory powinny zmienić się cztery razy (czarny-->czerwony->żółty->biały).
+\item Kolory powinny się zmienić o jeden.
+\item Jeśli udało się to test jest zdany.
+\item Kolory powinny się zmieniać zgodnie z zasadami wire world.
+\item Animacja powinna się zatrzymać.
+\item Animacja powinna wrócić do początkowego układu sprzed kliknięcia przycisku GO.
+\item Wszystkie komórki powinny być białe.
+\item Kolory na planszy nie powinny się zmieniać.
+\item Elementy powinny zostać wstawione na plansze, z wyjątkiem przypadku, w którym zahaczają o krawędź ekranu.
+\item Powinno pojawić się ColorMenu:
+
+\includegraphics[width=\textwidth]{GUIWireWorld2}
+\item Kolory na planszy powinny zostać zmienione zgodnie z ustawieniami, a animacja odbyć się zgodnie z zasadami wire world.
 \end{enumerate}
 
 \end{description}
@@ -399,25 +429,41 @@ opis metody
 \end{description}
 
 \subsection{Board}
-\subsubsection{BoardMaker}
+\subsubsection{BoardMaker, Template}
 \begin{description}
 
 \item[Scenariusze] \hfill
 \begin{enumerate}
-\item
-\item 
-\item
-\item
-\item 
+\item Stworzyć obiekt Template jako wartości pól wymiarów podać (30, 30), a listę obiektów klasy Integer taką jak w pliku TestLoad.txt. Wypisać macierz na konsole.
+\item Wywołać metode makeBoard w wariancie bez argumentu Template. Podając domyślny GridPane i obiekt Colors z domyślnymi kolorami.
+\item Wywołać metode makeBoard w wariancie z argumentem Template takim jak w teście pierwszym. Podając domyślny GridPane i obiekt Colors z domyślnymi kolorami.
+
 \end{enumerate}
 
 \item[Kryteria oceny poprawnej pracy] \hfill
 \begin{enumerate}
-\item 
-\item
-\item
-\item 
-\item 
+\item Jeśli macierz jest taka sam jak w pliku TestLoad.txt, test jest zdany.
+\item W głównym menu interfejsu graficznego powinna pojawić się tablica białych kwadratów 30 na 30.
+\item W głównym menu interfejsu graficznego powinna pojawić się taka tablica:
+
+\includegraphics[width=\textwidth]{TestGUI2}
+\end{enumerate}
+
+\end{description}
+
+\subsubsection{Templates}
+\begin{description}
+
+\item[Scenariusze] \hfill
+\begin{enumerate}
+\item Stworzyć puste obiekty Template, których pola x wypełnić kolejno wartościami 1, 2, 3. Dodać te obiekty do Tempaltes za pomocą metody \textit{addTempalte} nadając im  klucze 1, 2 ,3. Pobrać z Templates obiekty Template po kolejno 1, 2, 3 nadanych kluczach i wypisać wartości ich pól x na konsole.
+
+\end{enumerate}
+
+\item[Kryteria oceny poprawnej pracy] \hfill
+\begin{enumerate}
+\item  Na konsoli powinien pojawić się komunikat: ,,1 2 3"
+
 \end{enumerate}
 
 \end{description}
