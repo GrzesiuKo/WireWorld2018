@@ -206,13 +206,30 @@ Domyślne kolory to:
 
 
 \section{Pakiet IO}
+
 \subsection{IO}
-krótki opis klasy
+
+Klasa służy do odczytywania z oraz zapisu do polików graficznych konfiguracji pól na planszy.
 \subsubsection{Pola}
+\begin{itemize}
+\item brak
+\end{itemize}
 
 \subsubsection{Metody}
+\begin{itemize}
+\item public void \textbf{readBoardConfiguration}
 
+Opis metody.
+\item public void \textbf{fillBoard}
 
+Opis metody.
+\item private void \textbf{saveBoard}
+
+Opis metody.
+\item public Template \textbf{readTemplate}
+
+Opis metody.
+\end{itemize}
 
 \noindent\linia
 
@@ -294,52 +311,108 @@ Metoda dodaje do kolekcji \textit{templates} obiekt klasy Template i nadaje mu k
 
 
 \subsection{GenerationsHandler}
-krótki opis klasy
+Obiekt ten, jako rozszerzenie klasy ,,Thread'', zapewnia wątek na którym wykonywana będzie generacja kolejnych plansz. Klasa ma za zadanie obserwować zmiany jakie użytkownik wprowadza poprzez interfejs graficzny i po odpowiednim skonfigurowaniu, cyklicznie uruchamiać, bądź czekać na uruchomienie generatora.
+
 \subsubsection{Pola}
 \begin{itemize}
-\item typ  \textit{nazwa}
+\item boolean \textit{play}
+\item boolean \textit{borders}
+\item int \textit{delay}
+\item HashMap<String, javafx.scene.shape.Rectangle> \textit{rectangleMap}
 \end{itemize}
+
 \subsubsection{Metody}
 \begin{itemize}
-\item typ  \textbf{nazwa}
+\item void  \textbf{run}
 
 opis metody
+\item void  \textbf{startGenerator}
+
+opis metody
+\item void  \textbf{stopGenerator}
+
+opis metody
+\item void  \textbf{setDelay}
+
+opis metody
+\item void  \textbf{setRecntaglesMap}
+
+opis metody
+\item int  \textbf{getDelay}
+
+opis metody
+
 \end{itemize}
-
-
-
-
-
 
 \subsection{CellularAutomaton}
-krótki opis klasy
+Klasa pełni rolę generatora kolejnych plansz.
+
 \subsubsection{Pola}
 \begin{itemize}
-\item typ  \textit{nazwa}
+\item int[]  \textit{headColor}
+\item int[]  \textit{tailColor}
+\item int[]  \textit{conductorColor}
+\item int[]  \textit{emptyFieldColor}
 \end{itemize}
+
 \subsubsection{Metody}
 \begin{itemize}
-\item typ  \textbf{nazwa}
+\item void  \textbf{generateNextFrame}
+
+opis metody
+\item void  \textbf{importTheme}
 
 opis metody
 \end{itemize}
-
-
-
 
 \subsection{Rules}
-krótki opis klasy
+Klasa determinuje stan w który komórka przechodzi w następnej generacji, uwzględniając jej aktualny stan oraz stan komórek sąsiednich. 
+
 \subsubsection{Pola}
 \begin{itemize}
-\item typ  \textit{nazwa}
+\item brak
 \end{itemize}
 \subsubsection{Metody}
 \begin{itemize}
-\item typ  \textbf{nazwa}
+\item int  \textbf{getNewState}
 
 opis metody
 \end{itemize}
 
+\subsection{Neighbours}
+Obiekt zajmuje się analizowaniem stanów komórek. Jego zadaniem jest zwrócenie informacji o ilości komórek, które są ,,głowami'', dookoła konkretnej komórki. Sposób analizy można konfigurować.
+
+\subsubsection{Pola}
+\begin{itemize}
+\item brak
+\end{itemize}
+\subsubsection{Metody}
+\begin{itemize}
+\item public int  \textbf{getHeadNeighboursNumber}
+
+opis metody
+\item private int  \textbf{neighbours}
+
+opis metody
+\item private int  \textbf{borderlessNeigbhours}
+
+opis metody
+\end{itemize}
+
+\subsection{final FieldsIdentification}
+Klasa statyczna zawierająca stałe, które określają stany komórek.
+
+\subsubsection{Pola}
+\begin{itemize}
+\item public static final int \textit{HEAD = 3}
+\item public static final int \textit{TAIL = 2}
+\item public static final int \textit{CONDUCTOR = 1}
+\item public static final int \textit{EMPTYFIELD = 0}
+\end{itemize}
+\subsubsection{Metody}
+\begin{itemize}
+\item brak
+\end{itemize}
 
 \noindent\linia
 \section{Przepływ Sterowania}
