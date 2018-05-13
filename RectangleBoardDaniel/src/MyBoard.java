@@ -79,7 +79,7 @@ public class MyBoard extends Application {
         Scene scene = new Scene(gridPane, 400, 400);
         stage.setScene(scene);
         stage.show();
-        MyAnimation animate = new MyAnimation(recMap, 100);
+        MyAnimation animate = new MyAnimation(recMap, 0);
         animate.start();
     }
 

@@ -8,7 +8,8 @@ import java.util.HashMap;
 public class MyAnimation extends Thread {
     private HashMap<String, Rectangle> recMap;
     int delay;
-    static boolean play = true;
+    static boolean play = false;
+    static int cn=0;
 
     public MyAnimation(HashMap<String, Rectangle> map, int ddelay) {
         recMap = map;
@@ -30,6 +31,8 @@ public class MyAnimation extends Thread {
         while(true) {
             while (y < 10 && play) {
                 while (x < 10 && play) {
+                    cn++;
+                    System.out.println("Gerenacji: " + cn);
                     try {
                         sleep(delay);
                     } catch (InterruptedException e) {
