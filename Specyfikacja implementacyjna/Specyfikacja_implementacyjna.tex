@@ -210,6 +210,7 @@ Domyślne kolory to:
 \subsection{IO}
 
 Klasa służy do odczytywania z oraz zapisu do polików graficznych konfiguracji pól na planszy.
+
 \subsubsection{Pola}
 \begin{itemize}
 \item brak
@@ -217,18 +218,48 @@ Klasa służy do odczytywania z oraz zapisu do polików graficznych konfiguracji
 
 \subsubsection{Metody}
 \begin{itemize}
-\item public void \textbf{readBoardConfiguration}
+\item public void \textbf{readBoardConfiguration(String path, HashMap<String, Rectangle> map)}
 
-Opis metody.
-\item public void \textbf{fillBoard}
+Funkcja czyta plik graficzny o nazwie ,,path'', piksel po pikselu oraz zapisuje konfigurację do macierzy liczb całkowitych - reprezentujących stany komórek. 
 
-Opis metody.
-\item private void \textbf{saveBoard}
+Przy odczycie konieczna jest konwercja wartości z formatu RGB na jednocyfrowy znak stanu. Należy postępować według wzoru:
+\begin{itemize}
+\item RGB[ 230-255, 230-255, 230-255 ] -> 0
+\item RGB[ 0-25, 0-25, 0-25 ] -> 1
+\item RGB[ 230-250, 0-25, 0-25 ] -> 2
+\item RGB[ 230-255, 230-255, 0-150 ] -> 3
+\end{itemize}
 
-Opis metody.
+Przedziały oznaczają tolerancję wariacji koloru.
+
+Następnie wywołaj funkcje fillBoard.
+
+\item private void \textbf{fillBoard(int[][] matrix, HashMap<String, Rectangle> map}
+
+Metoda na podstawie otrzymanej macierzy liczb całkowitych, aktualizuje macierz ,,map'', zmieniając kolory obiektów zgodnie ze wzorem:
+\begin{itemize}
+\item 0 -> zmień kolor na biały
+\item 1 -> czarny
+\item 2 -> żółty
+\item 3 -> czerwony
+\end{itemize}
+
+\item private void \textbf{saveBoard( String name, HashMap<String, Rectangle> map }
+
+Funkcja zapisuje do pliku graficznego o nazwie ,,name'' konfigurację planszy.
 \item public Template \textbf{readTemplate}
 
-Opis metody.
+Funkcja odczytuje z pliku graficznego konfigurację wzoru, przy odczycie konwertując wartość koloru pikseli z formatu RGB na jednocyfrową liczbę całkowitą:
+
+- 0 -> zmień kolor na biały
+
+- 1 -> czarny
+
+- 2 -> żółty
+
+- 3 -> czerwony
+
+A następnie zapisuje do obiektu Template i go zwraca. 
 \end{itemize}
 
 \noindent\linia
@@ -318,29 +349,28 @@ Obiekt ten, jako rozszerzenie klasy ,,Thread'', zapewnia wątek na którym wykon
 \item boolean \textit{play}
 \item boolean \textit{borders}
 \item int \textit{delay}
-\item HashMap<String, javafx.scene.shape.Rectangle> \textit{rectangleMap}
+\item CellularAutomation \textit{generator}
 \end{itemize}
 
 \subsubsection{Metody}
 \begin{itemize}
 \item void  \textbf{run}
 
-opis metody
-\item void  \textbf{startGenerator}
+W nieskończonej pętli wywołuje metodę ,,generateNextFrame'', poprzednio sprawdzając wartość pola ,,play'', oznaczającego, czy generacja ma być wykonywana. Konstrukcja pętli umożliwia wstrzymywanie i wznawianie pracy generatora.
+Kolejne uruchomienia generatora uruchamiane są w odstępach czasowych określonych w zmiennej ,,delay'' wyrażonej w milisekundach.
+\item public void  \textbf{startGenerator}
 
-opis metody
-\item void  \textbf{stopGenerator}
+Zmienia wartość pola ,,play'' na ,,true''.
+\item public void  \textbf{stopGenerator}
 
-opis metody
-\item void  \textbf{setDelay}
+Zmienia wartość pola ,,play'' na ,,false''.
+\item public void  \textbf{setDelay(int value}
 
-opis metody
-\item void  \textbf{setRecntaglesMap}
+Przypisuje polu ,,delay'' wartość ,,value''.
 
-opis metody
 \item int  \textbf{getDelay}
 
-opis metody
+Zwraca wartość pola ,,delay''.
 
 \end{itemize}
 
@@ -349,20 +379,35 @@ Klasa pełni rolę generatora kolejnych plansz.
 
 \subsubsection{Pola}
 \begin{itemize}
+\item int  \textit{boardWidth}
+\item int  \textit{boardHight}
+\item int[][] \textit{tmp}
+\item HashMap<String, javafx.scene.shape.Rectangle> \textit{map}
 \item int[]  \textit{headColor}
 \item int[]  \textit{tailColor}
 \item int[]  \textit{conductorColor}
 \item int[]  \textit{emptyFieldColor}
+\item Rules \textit{rules}
+\item Neighbours \textit{neighbours}
+
 \end{itemize}
 
 \subsubsection{Metody}
 \begin{itemize}
-\item void  \textbf{generateNextFrame}
+\item public void  \textbf{generateNextFrame( boolean borders )}
 
-opis metody
-\item void  \textbf{importTheme}
+Na początku należy zaktualizować konfigurację kolorów za pomocą metody ,,importTheme''.
 
-opis metody
+Następnie dla każdej komórki w mapie ,,map'', należy wywołać funkcje ,,getHeadNeighboursNumber'' oraz ,,getNewState'', a wynik zapisać pod odpowiedniej indeksem w tablicy ,,tmp''.
+
+Po przeanalizowaniu całej planszy i zapisaniu nowych stanów do macierzy ,,tmp'', należy wyświetlić zmiany na ekranie, aktualizując kolory kwadratów w macierzy ,,map'', zgodnie z konfiguracja z ,,tmp''. Konwersja liczby całkowitej na kolor przebiega w następujący sposób:
+\begin{itemize}
+\item 0 -> emptyFieldColor
+\item 1 -> conductorColor
+\item 2 -> tailColor
+\item 3 -> headColor
+\end{itemize}
+
 \end{itemize}
 
 \subsection{Rules}
@@ -374,9 +419,18 @@ Klasa determinuje stan w który komórka przechodzi w następnej generacji, uwzg
 \end{itemize}
 \subsubsection{Metody}
 \begin{itemize}
-\item int  \textbf{getNewState}
+\item public int  \textbf{getNewState( int state, int headsNumber )}
 
-opis metody
+Zależnie od otrzymanych argumentów funkcja zwraca:
+\begin{itemize}
+\item state = 0, zwróć 0
+\item state = 3, zwróć 2
+\item state = 2, zwróć 1
+\item state = 1 i headsNumber != 1 != 2, zwróć 1
+\item state = 1 i headNumber = 1 lub 2, zwróć 3
+
+\end{itemize}
+
 \end{itemize}
 
 \subsection{Neighbours}
@@ -384,40 +438,51 @@ Obiekt zajmuje się analizowaniem stanów komórek. Jego zadaniem jest zwróceni
 
 \subsubsection{Pola}
 \begin{itemize}
-\item brak
+\item int  \textit{boardWidth}
+\item int  \textit{boardHight}
+\item HashMap<String, javafx.scene.shape.Rectangle> \textit{rectangleMap}
 \end{itemize}
 \subsubsection{Metody}
 \begin{itemize}
-\item public int  \textbf{getHeadNeighboursNumber}
+\item public int  \textbf{getHeadNeighboursNumber( boolean borders, int x, int y )}
 
-opis metody
-\item private int  \textbf{neighbours}
+Funkcja pełni role przekaźnika. Jeśli zmienna ,,borders'' ma wartość true, wywołaj metodę ,,neighbours'', a w przeciwnym wypadku ,,borderlessNeigbhours''.
 
-opis metody
-\item private int  \textbf{borderlessNeigbhours}
+\item private int  \textbf{neighbours(int x, int y,)}
 
-opis metody
-\end{itemize}
+Funkcja sprawdza ile jest komórek w stanie HEAD(czerwony) dookoła komórki o pytanym indeksie. Indeksy spoza macierzy są ignorowane - pola poza macierzą mają stan różny od HEAD.
+\item private int  \textbf{borderlessNeigbhours(int x, int y,)}
 
-\subsection{final FieldsIdentification}
-Klasa statyczna zawierająca stałe, które określają stany komórek.
-
-\subsubsection{Pola}
-\begin{itemize}
-\item public static final int \textit{HEAD = 3}
-\item public static final int \textit{TAIL = 2}
-\item public static final int \textit{CONDUCTOR = 1}
-\item public static final int \textit{EMPTYFIELD = 0}
-\end{itemize}
-\subsubsection{Metody}
-\begin{itemize}
-\item brak
+Funkcja sprawdza ile jest komórek w stanie HEAD(czerwony) dookoła komórki o pytanym indeksie. Indeksy spoza macierzy są zawijane, zamieniane na przeciwne.
 \end{itemize}
 
 \noindent\linia
 \section{Przepływ Sterowania}
 
+Przykładowe uruchomienie programu:
+\begin{itemize}
+\item start programu. 
+\item start wątku generatora; GenerationsHandler.start()
+\item przygotowanie okna interfejsu graficznego; GUI.
+\item tworzenie tablicy komórek; BoardMaker.makeBoard()
+\item określenie nazwy pliku i polecenie wczytania konfiguracji planszy z pliku 
 
+- obsłużenie czynności przez MainScreenController
+\item wywołanie funkcji czytającej z pliku; IO.readBoardConfiguration()
+\item aktualizacja planszy; IO.fillBoard
+\item użytkownik wciska przycisk start; MainScreenController
+\item generatorHandler.startGenerator()
+\item wątek GenerationsHandler rozpoczyna pracę i cyklicznie wywołuje CellularAutomation.generateNextFrame()
+\item aktualizacja motywu kolorów; CellularAutomation.importTheme()
+\item określenie liczby sąsiadów w stanie HEAD; Neighbours.getHeadNeighboursNumber()
+\item określenie następnego stanu; Rules.getNewState()
+\item Użytkownik wciska przycisk stop; MainScreenController
+\item GeneratorHandler.stopGenerator()
+\item wątek GenerationsHandler wstrzymuje pracę
+\item użytkownik zleca zapis planszy do pliku graficznego; MainScreenController
+\item zapis do pliku; IO.saveBoard()
+\item użytkownik kończy pracę programu
+\end{itemize}
 
 
 \noindent\linia
@@ -483,20 +548,19 @@ Klasa statyczna zawierająca stałe, które określają stany komórek.
 
 \item[Scenariusze] \hfill
 \begin{enumerate}
-\item
-\item 
-\item
-\item
-\item 
+\item Odczyt z pliku w formacie .png
+\item Odczyt z pliku w formacie innym niż .png
+\item Próba odczytu z pliku do którego brak praw odczytu
+\item Zapis planszy do pliku .png
+\item Próba zapisu planszy do pliku bez praw do zapisywania na dysku
 \end{enumerate}
 
 \item[Kryteria oceny poprawnej pracy] \hfill
 \begin{enumerate}
-\item 
-\item
-\item
-\item 
-\item 
+\item Poprawny odczyt konfiguracji z pliku i aktualizacja komórek na ekranie
+\item Obsłużenie wyjątków z brakiem praw do zapisu na dysk
+\item Obsłużenie wyjątków z brakiem praw do czytania z dysku
+\item Podanie ścieżki do pliku, który nie istnieje, bądź zawierającego niepoprawną konfigurację, skutkuje przerwaniem pracy i niezaktualizowaniem planszy.
 \end{enumerate}
 
 \end{description}
@@ -547,20 +611,71 @@ Klasa statyczna zawierająca stałe, które określają stany komórek.
 
 \item[Scenariusze] \hfill
 \begin{enumerate}
-\item
-\item 
-\item
-\item
-\item 
+\item pauzowanie i startowanie pracy generatora
+\item zmiana parametru ,,delay''
 \end{enumerate}
 
 \item[Kryteria oceny poprawnej pracy] \hfill
 \begin{enumerate}
-\item 
-\item
-\item
-\item 
-\item 
+\item Wątek reaguje na zmiany w konfiguracji programu
+
+\end{enumerate}
+
+\end{description}
+
+\subsubsection{CellularAutomation}
+\begin{description}
+
+\item[Scenariusze] \hfill
+\begin{enumerate}
+\item analiza równobocznej planszy w dwóch trybach analizy
+\item analiza nierównobocznej(poziomo)  planszy w dwóch trybach analizy
+\item analiza nierównobocznej(pionowo) planszy w dwóch trybach analizy
+\end{enumerate}
+
+\item[Kryteria oceny poprawnej pracy] \hfill
+\begin{enumerate}
+\item Metoda przeanalizowała wszystkie pola HashMap'y map oraz za pomocą innych funkcji , wypełniła macierz ,,tmp''. Kończąc pracę funkcja poprawnie zaktualizowała stan obiektów w ,,map''.
+
+\end{enumerate}
+
+\end{description}
+
+\subsubsection{Neighbours}
+\begin{description}
+
+\item[Scenariusze] \hfill
+\begin{enumerate}
+\item wywołanie funkcji dla poprawnych argumentów
+\item wywołanie dla indeksów spoza macierzy
+\item praca na tablicy zawierającej nierozpoznawane oznaczenia stanów
+
+\end{enumerate}
+
+\item[Kryteria oceny poprawnej pracy] \hfill
+\begin{enumerate}
+\item funkcja zwraca poprawną ilość sąsiadów w stanie HEAD, dookoła komórki o podanych indeksach
+\item stany oznaczone nierozpoznawanym symbolami traktowane są jako pole w stanie pustym(0).
+
+\end{enumerate}
+
+\end{description}
+
+\subsubsection{Rules}
+\begin{description}
+
+\item[Scenariusze] \hfill
+\begin{enumerate}
+\item wywołania z poprawnymi argumentami
+\item wywołanie dla nieznanego stanu
+\item wywołanie dla ujemnej liczby sąsiadów
+\end{enumerate}
+
+\item[Kryteria oceny poprawnej pracy] \hfill
+\begin{enumerate}
+\item funkcja zwraca wartości zgodne co do reguły określonej w opisie funkcji.
+\item niepoprawny znak stanu lub liczba sąsiadów skutkuje zwróceniem 0.
+
 \end{enumerate}
 
 \end{description}
