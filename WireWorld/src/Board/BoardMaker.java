@@ -15,8 +15,8 @@ public class BoardMaker {
     private int height;
 
     public BoardMaker() {
-        this.width = 30;
-        this.height = 30;
+        this.width = 0;
+        this.height = 0;
         board = new ArrayList<Rectangle>();
     }
 
@@ -24,7 +24,32 @@ public class BoardMaker {
         return board;
     }
 
-    public void makeBoard(Template template, Colors colors, Pane pane, int xColumns, int yRows, int rectSideLength) {
+    public void makeBoard(Template template, Colors colors, Pane pane, int rectSideLength) {
+         int xColumns = template.getWidth();
+         int yRows = template.getHeight();
+
+         makeBoard(colors, pane,xColumns,yRows, rectSideLength);
+        int lastIndex = width*height-1;
+        while(lastIndex>=0) {
+            switch(template.getTemplate().get(lastIndex)){
+                case 0:
+                    board.get(lastIndex).setFill(Paint.valueOf(colors.getEmpty()));
+                    break;
+                case 1:
+                    board.get(lastIndex).setFill(Paint.valueOf(colors.getConductor()));
+                    break;
+                case 2:
+                    board.get(lastIndex).setFill(Paint.valueOf(colors.getTail()));
+                    break;
+                case 3:
+                    board.get(lastIndex).setFill(Paint.valueOf(colors.getHead()));
+                    break;
+                default:
+                    board.get(lastIndex).setFill(Paint.valueOf(colors.getEmpty()));
+                    break;
+            }
+            lastIndex--;
+        }
 
     }
 
@@ -32,6 +57,8 @@ public class BoardMaker {
         Integer id = 1;
         int x = 0;
         int y = 0;
+        this.width = xColumns;
+        this.height = yRows;
         while (y < yRows && y * rectSideLength < pane.getHeight()) {
             Rectangle rectangle = new Rectangle(x * rectSideLength, y * rectSideLength, rectSideLength, rectSideLength);
 
@@ -72,11 +99,24 @@ public class BoardMaker {
                 pane.getChildren().add(rectangle);
 
                 x += 1;
-            } else {
+            } else if (x * rectSideLength > pane.getWidth()){
+                this.width = x-1;
+                x = 0;
+                y += 1;
+            }else if (x * rectSideLength == pane.getWidth()) {
+                this.width = x;
+                x = 0;
+                y += 1;
+            }else{
                 x = 0;
                 y += 1;
             }
 
+        }
+        if(y * rectSideLength > pane.getHeight()){
+            this.height = y-1;
+        }else if(y * rectSideLength == pane.getHeight()){
+            this.height=y;
         }
 
     }

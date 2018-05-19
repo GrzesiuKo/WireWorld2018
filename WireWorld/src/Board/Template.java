@@ -7,6 +7,18 @@ public class Template {
     private int width;
     private int height;
 
+    public Template(){
+        template = null;
+        width = 0;
+        height = 0;
+    }
+
+    public Template(int width,int  height, ArrayList<Integer> template){
+        this.template = template;
+        this.width = width;
+        this.height = height;
+    }
+
     public ArrayList<Integer> getTemplate() {
         return template;
     }

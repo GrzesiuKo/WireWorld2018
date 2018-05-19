@@ -8,10 +8,10 @@ import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class Test1 extends Application {
+public class Test2 extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../fxml/Test1.fxml"));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../fxml/Test2.fxml"));
         Scene scene = new Scene (loader.load());
 
         scene.addEventFilter(MouseDragEvent.DRAG_DETECTED, new EventHandler<MouseEvent>() {
