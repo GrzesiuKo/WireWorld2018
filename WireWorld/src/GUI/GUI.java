@@ -15,7 +15,8 @@ import java.awt.event.MouseEvent;
 public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/MainScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/MainScreen.fxml"));
+        Parent root = loader.load();
         primaryStage.setTitle("Wire World 2018");
         Scene scene = new Scene(root);
         scene.addEventFilter(MouseDragEvent.DRAG_DETECTED, new EventHandler<javafx.scene.input.MouseEvent>() {
@@ -24,13 +25,18 @@ public class GUI extends Application {
                 scene.startFullDrag();
             }
         });
-
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        MainScreenController mainScreenController = loader.getController();
+        mainScreenController.setStage(primaryStage);
     }
 
-        public static void main (String[]args){
-            launch(args);
-        }
+    public static void main(String[] args) {
+        launch(args);
+
+
+    }
 }
 

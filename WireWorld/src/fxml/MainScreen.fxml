@@ -6,23 +6,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainScreenController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainScreenController">
 	<children>
-      <AnchorPane fx:id="board" prefHeight="600.0" prefWidth="600.0" />
+      <Pane fx:id="board" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" />
       <JFXTextField layoutX="620.0" layoutY="72.0" promptText="Enter file name" />
       <JFXButton fx:id="load" buttonType="RAISED" contentDisplay="CENTER" layoutX="662.0" layoutY="114.0" onAction="#loadFile" style="-fx-background-color: #D84315;" text="Load" />
       <VBox alignment="CENTER" layoutX="656.0" layoutY="184.0" prefHeight="167.0" prefWidth="55.0" spacing="40.0">
          <children>
-            <JFXButton buttonType="RAISED" contentDisplay="CENTER" onAction="#goAnimation" style="-fx-background-color: #8BC34A;" text="GO" />
-            <JFXButton onAction="#pauseAnimation" style="-fx-background-color: #FFCA28;" text="Pause" />
-            <JFXButton onAction="#haltAnimation" style="-fx-background-color: #ff0000;" text="HALT!" />
-            <JFXButton buttonType="RAISED" contentDisplay="CENTER" onAction="#clear" style="-fx-background-color: #03A9F4;" text="Clear" />
+            <JFXButton fx:id="go" buttonType="RAISED" contentDisplay="CENTER" onAction="#goAnimation" style="-fx-background-color: #8BC34A;" text="GO" />
+            <JFXButton fx:id="pause" onAction="#pauseAnimation" style="-fx-background-color: #FFCA28;" text="Pause" />
+            <JFXButton fx:id="halt" onAction="#haltAnimation" style="-fx-background-color: #ff0000;" text="HALT!" />
+            <JFXButton fx:id="clear" buttonType="RAISED" contentDisplay="CENTER" onAction="#clear" style="-fx-background-color: #03A9F4;" text="Clear" />
          </children>
       </VBox>
-      <JFXButton layoutX="662.0" layoutY="435.0" onAction="#colorMenu" style="-fx-background-color: #F8BBD0;" text="Color" />
+      <JFXButton fx:id="color" layoutX="662.0" layoutY="435.0" onAction="#colorMenu" style="-fx-background-color: #F8BBD0;" text="Color" />
       <GridPane alignment="CENTER" layoutX="611.0" layoutY="472.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="100.0" />

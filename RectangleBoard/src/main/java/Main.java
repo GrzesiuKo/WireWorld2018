@@ -21,7 +21,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/GUI/rectangleBoard.fxml"));
-		TabPane anchorPane = loader.load();
+		AnchorPane anchorPane = loader.load();
 		Scene scene = new Scene(anchorPane, 800, 600);
 		stage.setTitle("Wire World 2018");
 		stage.setScene(scene);

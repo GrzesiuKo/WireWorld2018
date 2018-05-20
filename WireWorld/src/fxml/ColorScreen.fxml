@@ -5,9 +5,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ColorScreenController">
    <children>
       <VBox alignment="CENTER" layoutX="46.0" layoutY="105.0" prefHeight="150.0" prefWidth="159.0" spacing="20.0">
          <children>
@@ -19,12 +19,19 @@
       </VBox>
       <VBox alignment="CENTER" layoutX="205.0" layoutY="105.0" prefHeight="150.0" prefWidth="159.0" spacing="20.0">
          <children>
-            <ColorPicker />
-            <ColorPicker />
-            <ColorPicker />
-            <ColorPicker />
+            <ColorPicker fx:id="head" />
+            <ColorPicker fx:id="tail" />
+            <ColorPicker fx:id="conductor" />
+            <ColorPicker fx:id="empty" />
          </children>
       </VBox>
-      <Button layoutX="179.0" layoutY="296.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="backButton" layoutX="179.0" layoutY="296.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Label alignment="CENTER" layoutX="150.0" layoutY="30.0" prefHeight="33.0" prefWidth="111.0" text="Color Menu">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="defaultColorsButton" layoutX="34.0" layoutY="34.0" mnemonicParsing="false" onAction="#defaultColors" text="Default Colors" />
+      <Button fx:id="currentColorsButton" layoutX="294.0" layoutY="34.0" mnemonicParsing="false" onAction="#currentColors" text="Current Colors" />
    </children>
 </Pane>
