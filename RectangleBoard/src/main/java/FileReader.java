@@ -11,12 +11,17 @@ public class FileReader {
         BufferedImage img = null;
         try {
             BufferedImage image = ImageIO.read(new File("configuration.png"));
-
             Raster rast = image.getData();
-            int[] siemka = new int[4];
-            rast.getPixel(19,0,siemka);
 
-            for( int x: siemka){
+            int width = image.getWidth();
+            int height = image.getHeight();
+            System.out.println("W: " + width + " H: " + height);
+
+            int[][] siemka = new int[width][height];
+            int[] tmppixel = new int[4];
+            rast.getPixel(19,0, tmppixel);
+
+            for( int x: tmppixel){
                 System.out.println("XX:  " + x);
             }
 
