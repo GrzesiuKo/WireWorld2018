@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -16,6 +17,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class MainScreenController {
+    private BoardMaker boardMaker;
     private Stage stage;
     private Colors colors;
 
@@ -67,9 +69,11 @@ public class MainScreenController {
     public void initialize() {
         colors = new Colors();
 
-        BoardMaker boardMaker = new BoardMaker();
+        boardMaker = new BoardMaker();
 
         boardMaker.makeBoard(colors, board, 100, 100, 20, 600, 600);
+
+
     }
 
     public void setStage(Stage stage) {
@@ -101,7 +105,8 @@ public class MainScreenController {
     }
 
     public void clear() {
-
+        boardMaker.setBoardColor(Paint.valueOf(colors.getEmpty()));
+        boardMaker.setBoardStatus(0);
     }
 
     public void colorMenu() {
@@ -115,6 +120,7 @@ public class MainScreenController {
         ColorScreenController colorScreenController = loader.getController();
         colorScreenController.setColors(colors);
         colorScreenController.setMainScreenController(this);
+        colorScreenController.setBoardMaker(boardMaker);
 
         Scene scene = new Scene(pane);
 

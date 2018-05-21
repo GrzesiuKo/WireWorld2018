@@ -1,12 +1,17 @@
 package GUI;
 
+import Board.BoardMaker;
+import Board.Cell;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class ColorScreenController {
+    private BoardMaker boardMaker;
     private Colors colors;
     private MainScreenController mainScreenController;
 
@@ -37,6 +42,9 @@ public class ColorScreenController {
         this.colors = colors;
     }
 
+    public void setBoardMaker(BoardMaker boardMaker) {
+        this.boardMaker = boardMaker;
+    }
 
     public void defaultColors() {
 
@@ -60,7 +68,7 @@ public class ColorScreenController {
         colors.setEmpty(empty.getValue().toString());
 
         mainScreenController.setColors(colors);
-
+        boardMaker.repaintBoard(colors);
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
     }
