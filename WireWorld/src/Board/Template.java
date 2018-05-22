@@ -65,7 +65,8 @@ public class Template {
         }
     }
 
-    public void addUp(BoardMaker boardMaker, Cell cell) {
+    public int addUp(BoardMaker boardMaker, Cell cell) {
+       return 0;
     }
 
     public int addRight(BoardMaker boardMaker, Cell cell) {
@@ -91,17 +92,62 @@ public class Template {
                     iy++;
                 }
             } else {
-                System.out.println("Template wystaje na dole poza tablice.");
                 return 1;
             }
         } else {
-            System.out.println("Template wystaje na po prawej poza tablice.");
             return 1;
         }
         return 0;
     }
 
-    public void addDown(BoardMaker boardMaker, Cell cell) {
+    public int addDown(BoardMaker boardMaker, Cell cell) {
+        if (cell.getXCoordinate() - height + 1 >= 0) {
+            if (cell.getYCoordinate() + width <= boardMaker.getHeight()) {
+                Cell currentCell = cell;
+                int ix = cell.getXCoordinate();
+                int iy = cell.getYCoordinate();
+                int templateIndex = 0;
+                boolean exception1 = false;
+                boolean exception2 = false;
+
+                while (ix > cell.getXCoordinate() - height) {
+                    while (iy < cell.getYCoordinate() + width) {
+                        currentCell.setColorAndStatus(template.get(templateIndex));
+                        templateIndex++;
+                        if (Integer.valueOf(currentCell.getId()) + boardMaker.getWidth() < boardMaker.getWidth() * boardMaker.getHeight()) {
+                            currentCell = boardMaker.getBoard().get(Integer.valueOf(currentCell.getId()) + boardMaker.getWidth());
+                        } else {
+                            exception1 = true;
+                        }
+                        iy++;
+                    }
+                    iy = cell.getYCoordinate();
+                    if (exception1) {
+                        currentCell = boardMaker.getBoard().get(Integer.valueOf(currentCell.getId()) - (width - 1) * boardMaker.getWidth() - 1);
+
+                    } else {
+                        if (exception2) {
+                            return 0;
+
+                        } else {
+                            currentCell = boardMaker.getBoard().get(Integer.valueOf(currentCell.getId()) - width * boardMaker.getWidth() - 1);
+                        }
+                        if (Integer.valueOf(currentCell.getId()) == 0) {
+                            exception2 = true;
+                        }
+                    }
+                    ix--;
+                }
+
+
+            } else {
+                return 1;
+            }
+
+        } else {
+            return 1;
+        }
+        return 0;
     }
 
 
@@ -109,20 +155,16 @@ public class Template {
         if (cell.getXCoordinate() - this.width + 1 >= 0) {
             if (cell.getYCoordinate() + this.height <= boardMaker.getHeight()) {
                 Cell currentCell = cell;
-                int exception = 0;
+                boolean exception = false;
                 int templateIndex = 0;
                 int ix = cell.getXCoordinate();
                 int iy = cell.getYCoordinate();
 
                 if (Integer.valueOf(cell.getId()) == width - 1) {
-                    exception++;
+                    exception = true;
                 }
                 while (iy < cell.getYCoordinate() + height) {
                     while (ix > cell.getXCoordinate() - width) {
-
-                        System.out.println("ix =" + ix + " iy =" + iy);
-                        System.out.println(currentCell.getId());
-
 
                         currentCell.setColorAndStatus(template.get(templateIndex));
                         if (Integer.valueOf(currentCell.getId()) - 1 >= 0)
@@ -133,9 +175,9 @@ public class Template {
                         ix--;
                     }
                     ix = cell.getXCoordinate();
-                    if (exception == 1) {
+                    if (exception) {
                         currentCell = boardMaker.getBoard().get(Integer.valueOf(currentCell.getId()) + boardMaker.getWidth() + width - 1);
-                        exception = 0;
+                        exception = false;
                     } else if (Integer.valueOf(currentCell.getId()) + boardMaker.getWidth() + width <= boardMaker.getHeight() * boardMaker.getWidth()) {
                         currentCell = boardMaker.getBoard().get(Integer.valueOf(currentCell.getId()) + boardMaker.getWidth() + width);
                     }
@@ -144,12 +186,10 @@ public class Template {
                 }
 
             } else {
-                System.out.println("Template wystaje na dole poza tablice.");
                 return 1;
             }
 
         } else {
-            System.out.println("Template wystaje po lewej poza tablice.");
             return 1;
         }
         return 0;

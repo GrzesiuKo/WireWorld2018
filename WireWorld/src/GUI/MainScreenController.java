@@ -177,5 +177,43 @@ public class MainScreenController {
 
     }
 
+    public void testFigure3() {
+
+        ArrayList<Integer> list = new ArrayList<>();
+        int height = 4;
+        int width = 4;
+        int amount = height * width;
+        Integer color = 0;
+        while (amount > 0) {
+            color = 1+amount%3;
+            list.add(color);
+            amount--;
+        }
+        Template template = new Template(width, height, list);
+
+        boardMaker.setTemplateInsertionMode(template,2);
+
+
+    }
+    public void testFigure4() {
+
+        ArrayList<Integer> list = new ArrayList<>();
+        int height = 4;
+        int width = 4;
+        int amount = height * width;
+        Integer color = 0;
+        while (amount > 0) {
+            color = 1+amount%3;
+            list.add(color);
+            amount--;
+        }
+        Template template = new Template(width, height, list);
+
+        boardMaker.setTemplateInsertionMode(template,0);
+
+
+    }
+
+
 
 }
