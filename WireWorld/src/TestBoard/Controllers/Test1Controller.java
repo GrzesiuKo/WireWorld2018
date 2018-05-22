@@ -1,10 +1,13 @@
 package TestBoard.Controllers;
 
 import Board.BoardMaker;
+import Board.Template;
 import GUI.Colors;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+
+import java.util.ArrayList;
 
 public class Test1Controller {
     @FXML

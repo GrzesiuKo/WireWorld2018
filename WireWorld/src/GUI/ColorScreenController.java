@@ -68,7 +68,7 @@ public class ColorScreenController {
         colors.setEmpty(empty.getValue().toString());
 
         mainScreenController.setColors(colors);
-        boardMaker.repaintBoard(colors);
+        boardMaker.repaintBoard();
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
     }

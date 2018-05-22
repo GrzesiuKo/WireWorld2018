@@ -1,6 +1,7 @@
 package GUI;
 
 import Board.BoardMaker;
+import Board.Template;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainScreenController {
     private BoardMaker boardMaker;
@@ -68,7 +70,6 @@ public class MainScreenController {
     @FXML
     public void initialize() {
         colors = new Colors();
-
         boardMaker = new BoardMaker();
 
         boardMaker.makeBoard(colors, board, 100, 100, 20, 600, 600);
@@ -87,6 +88,7 @@ public class MainScreenController {
     public void setColors(Colors colors) {
         this.colors = colors;
     }
+
 
     public void loadFile() {
 
@@ -135,6 +137,45 @@ public class MainScreenController {
         newStage.show();
 
 
-}
+    }
+
+    public void testFigure1() {
+
+        ArrayList<Integer> list = new ArrayList<>();
+        int height = 4;
+        int width = 4;
+        int amount = height * width;
+        Integer color = 0;
+        while (amount > 0) {
+            color = 1+amount%3;
+            list.add(color);
+            amount--;
+        }
+        Template template = new Template(width, height, list);
+
+        boardMaker.setTemplateInsertionMode(template,1);
+
+
+    }
+
+    public void testFigure2() {
+
+        ArrayList<Integer> list = new ArrayList<>();
+        int height = 4;
+        int width = 4;
+        int amount = height * width;
+        Integer color = 0;
+        while (amount > 0) {
+            color = 1+amount%3;
+            list.add(color);
+            amount--;
+        }
+        Template template = new Template(width, height, list);
+
+        boardMaker.setTemplateInsertionMode(template,3);
+
+
+    }
+
 
 }
