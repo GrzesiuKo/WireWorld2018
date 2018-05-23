@@ -26,6 +26,8 @@ public class MainScreenController {
     private BoardMaker boardMaker;
     private Stage stage;
     private Colors colors;
+
+    private BoardAdapter adapter;
     private GeneratorHandler genHandler;
 
     @FXML
@@ -75,11 +77,12 @@ public class MainScreenController {
 
         boardMaker.makeBoard(colors, board, 100, 100, 20, 600, 600);
 
-        BoardAdapter adapter = new BoardAdapter(boardMaker);
-        genHandler = new GeneratorHandler(500, adapter);
+        adapter = new BoardAdapter(boardMaker);
+        genHandler = new GeneratorHandler(1000, adapter);
         adapter.setCellStateAt(29,0,3);
         adapter.setCellStateAt(29,29,3);
-
+        genHandler.start();
+        genHandler.playGenerator();
     }
 
     public void setStage(Stage stage) {
@@ -100,11 +103,11 @@ public class MainScreenController {
     }
 
     public void goAnimation() {
-
+        genHandler.playGenerator();
     }
 
     public void pauseAnimation() {
-
+        genHandler.pauseGenerator();
     }
 
     public void haltAnimation() {

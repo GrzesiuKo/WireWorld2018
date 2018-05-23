@@ -10,23 +10,25 @@ public class BoardAdapter {
     private int hight = 0;
     private int width = 0;
 
-    public BoardAdapter( BoardMaker board ){
+    public BoardAdapter(BoardMaker board) {
         this.list = board.getBoard();
         this.hight = board.getHeight();
         this.width = board.getWidth();
     }
 
-    public int getCellStateAt( int x, int y ){
-        return list.get(y*width+x).getStatus();
-    }
-    public void setCellStateAt( int x, int y, int state){
-        list.get(y*width+x).setColorAndStatus(state);
+    public int getCellStateAt(int x, int y) {
+        return list.get(y * width + x).getStatus();
     }
 
-    public int getHeight(){
+    public void setCellStateAt(int x, int y, int state) {
+        list.get(y * width + x).setColorAndStatus(state);
+    }
+
+    public int getHeight() {
         return hight;
     }
-    public int getWidth(){
+
+    public int getWidth() {
         return width;
     }
 }

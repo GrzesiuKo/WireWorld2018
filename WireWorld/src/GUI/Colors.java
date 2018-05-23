@@ -9,8 +9,8 @@ public class Colors {
     private String empty;
 
     public Colors(){
-        setHead("#f9f50e");
-        setTail("#f10606");
+        setHead("#f10606");
+        setTail("#f9f50e");
         setConductor("#000000");
         setEmpty("#FFFFFF");
     }

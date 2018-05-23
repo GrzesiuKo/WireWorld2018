@@ -6,7 +6,7 @@ public class GeneratorHandler extends Thread {
     int delay;
     static boolean play = false;
 
-    public GeneratorHandler(int delay, BoardAdapter adapter ) {
+    public GeneratorHandler(int delay, BoardAdapter adapter) {
         this.delay = delay;
         generator = new CellularAutomaton(adapter);
     }
@@ -23,6 +23,7 @@ public class GeneratorHandler extends Thread {
         while (true) {
             while (play) {
                 System.out.println("PracujePracujePracuje :D");
+                generator.generateNextFrame();
                 try {
                     Thread.sleep(delay);
                 } catch (InterruptedException e) {
