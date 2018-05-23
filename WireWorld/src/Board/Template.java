@@ -66,7 +66,43 @@ public class Template {
     }
 
     public int addUp(BoardMaker boardMaker, Cell cell) {
-       return 0;
+        if (cell.getXCoordinate() + height <= boardMaker.getWidth()) {
+            if (cell.getYCoordinate() - width + 1 >= 0) {
+                Cell currentCell = cell;
+                boolean exception = false;
+                int templateIndex = 0;
+                int ix = cell.getXCoordinate();
+                int iy = cell.getYCoordinate();
+                while (ix < cell.getXCoordinate() + height) {
+                    while (iy > cell.getYCoordinate() - width) {
+                        currentCell.setColorAndStatus(template.get(templateIndex));
+                        if (Integer.valueOf(currentCell.getId())- boardMaker.getWidth()>=0) {
+                            currentCell = boardMaker.getBoard().get(Integer.valueOf(currentCell.getId()) - boardMaker.getWidth());
+                        }else{
+                            exception = true;
+
+                        }
+                        templateIndex++;
+                        iy--;
+                    }
+                    if (exception) {
+                        currentCell = boardMaker.getBoard().get(Integer.valueOf(currentCell.getId()) + (width-1) * boardMaker.getWidth() + 1);
+                    }else {
+                        currentCell = boardMaker.getBoard().get(Integer.valueOf(currentCell.getId()) + width * boardMaker.getWidth() + 1);
+                    }
+                    iy = cell.getYCoordinate();
+                    ix++;
+                }
+
+            } else {
+
+                return 1;
+            }
+        } else {
+
+            return 1;
+        }
+        return 0;
     }
 
     public int addRight(BoardMaker boardMaker, Cell cell) {

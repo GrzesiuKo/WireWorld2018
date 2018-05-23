@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/WireWorld/GUI/MainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WireWorld/GUI/MainScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/WireWorld/fxml/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WireWorld/fxml/MainScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board/BoardMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board/BoardMaker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Board/Template.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board/Template.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fxml/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/MainScreen.fxml" afterDir="false" />
@@ -67,15 +71,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainScreenController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainScreenController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/MainScreenController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="197" column="27" selection-start-line="197" selection-start-column="16" selection-end-line="197" selection-end-column="27" />
+            <state relative-caret-position="119">
+              <caret line="163" column="26" lean-forward="true" selection-start-line="163" selection-start-column="26" selection-end-line="163" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#clear#0;class#MainScreenController#0" />
-                <element signature="method#colorMenu#0;class#MainScreenController#0" />
+                <element signature="method#testFigure5#0;class#MainScreenController#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Templates.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Board/Templates.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
+              <folding>
+                <element signature="e#184#185#0" expanded="true" />
+                <element signature="e#230#231#0" expanded="true" />
+                <element signature="e#292#293#0" expanded="true" />
+                <element signature="e#349#350#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -84,18 +102,26 @@
       <file leaf-file-name="BoardMaker.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Board/BoardMaker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="116" column="22" selection-start-line="116" selection-start-column="22" selection-end-line="116" selection-end-column="22" />
+            <state relative-caret-position="152">
+              <caret line="317" column="32" selection-start-line="317" selection-start-column="32" selection-end-line="317" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#596#597#0" expanded="true" />
+                <element signature="e#635#636#0" expanded="true" />
+                <element signature="e#704#705#0" expanded="true" />
+                <element signature="e#760#761#0" expanded="true" />
                 <element signature="method#makeBoard#0;class#BoardMaker#0" />
                 <element signature="method#makeBoard#1;class#BoardMaker#0" />
+                <element signature="method#makeBoard#2;class#BoardMaker#0" />
+                <element signature="e#4905#4906#0" expanded="true" />
+                <element signature="e#4976#4977#0" expanded="true" />
                 <element signature="method#repaintBoardOnPrevious#0;class#BoardMaker#0" />
                 <element signature="method#repaintBoard#0;class#BoardMaker#0" />
                 <element signature="method#setBoardColor#0;class#BoardMaker#0" />
                 <element signature="method#setBoardStatus#0;class#BoardMaker#0" />
                 <element signature="method#setTemplateInsertionMode#0;class#BoardMaker#0" />
-                <element signature="method#setColorMode#0;class#BoardMaker#0" />
+                <element signature="e#10309#10310#0" expanded="true" />
+                <element signature="e#10388#10389#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,13 +130,9 @@
       <file leaf-file-name="Cell.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Board/Cell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
+            <state relative-caret-position="183">
               <caret line="91" column="41" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
               <folding>
-                <element signature="e#977#978#0" expanded="true" />
-                <element signature="e#1009#1010#0" expanded="true" />
-                <element signature="e#1056#1057#0" expanded="true" />
-                <element signature="e#1098#1099#0" expanded="true" />
                 <element signature="method#changeColor#0;class#Cell#0" />
                 <element signature="method#setColorAndStatus#0;class#Cell#0" />
                 <element signature="method#setColor#0;class#Cell#0" />
@@ -119,35 +141,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WireWorld.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WireWorld.iml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="32" column="52" lean-forward="true" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
+            <state relative-caret-position="340">
+              <caret line="32" column="52" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Template.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Template.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Board/Template.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="71" column="58" selection-start-line="71" selection-start-column="58" selection-end-line="71" selection-end-column="58" />
+            <state relative-caret-position="67">
+              <caret line="101" selection-start-line="101" selection-end-line="101" />
               <folding>
                 <element signature="method#addToBoard#0;class#Template#0" />
-                <element signature="e#1482#1483#0" expanded="true" />
-                <element signature="e#1505#1506#0" expanded="true" />
                 <element signature="method#addRight#0;class#Template#0" />
                 <element signature="method#addDown#0;class#Template#0" />
                 <element signature="method#addLeft#0;class#Template#0" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WireWorld.iml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WireWorld.iml">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -189,9 +209,11 @@
         <option value="$PROJECT_DIR$/src/TestBoard/Controllers/Test1Controller.java" />
         <option value="$PROJECT_DIR$/src/Board/Cell.java" />
         <option value="$PROJECT_DIR$/src/GUI/ColorScreenController.java" />
+        <option value="$PROJECT_DIR$/src/Board/Template.java" />
+        <option value="$PROJECT_DIR$/src/fxml/TemplateDirectionMenu.fxml" />
+        <option value="$PROJECT_DIR$/src/GUI/TemplateDirectionMenuController.java" />
         <option value="$PROJECT_DIR$/src/Board/BoardMaker.java" />
         <option value="$PROJECT_DIR$/src/GUI/MainScreenController.java" />
-        <option value="$PROJECT_DIR$/src/Board/Template.java" />
       </list>
     </option>
   </component>
@@ -210,6 +232,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -272,9 +295,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -517,8 +539,6 @@
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.30842608" />
       <window_info anchor="right" id="JetGradle" order="6" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="bottom" id="Profiler" order="9" />
@@ -528,22 +548,24 @@
       <window_info anchor="right" id="Capture Analysis" order="8" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" anchor="bottom" id="Messages" order="14" visible="true" weight="0.3290938" />
+      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Problems" order="10" />
-      <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="right" id="Maven Projects" order="5" />
       <window_info anchor="bottom" id="Terminal" order="13" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.25036603" />
       <window_info anchor="right" id="Database" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info id="Image Layers" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="10" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.329429" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3990461" />
     </layout-to-restore>
   </component>
@@ -556,7 +578,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="41" />
+      <option name="time" value="44" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -564,46 +586,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WireWorld.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/MainScreenController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2006">
-          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#clear#0;class#MainScreenController#0" />
-            <element signature="method#colorMenu#0;class#MainScreenController#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Board/BoardMaker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#makeBoard#0;class#BoardMaker#0" />
-            <element signature="method#makeBoard#1;class#BoardMaker#0" />
-            <element signature="method#repaintBoardOnPrevious#0;class#BoardMaker#0" />
-            <element signature="method#repaintBoard#0;class#BoardMaker#0" />
-            <element signature="method#setBoardColor#0;class#BoardMaker#0" />
-            <element signature="method#setBoardStatus#0;class#BoardMaker#0" />
-            <element signature="method#setTemplateInsertionMode#0;class#BoardMaker#0" />
-            <element signature="method#setColorMode#0;class#BoardMaker#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Colors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Board/BoardMaker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -831,19 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Board/Templates.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
-          <folding>
-            <element signature="e#184#185#0" expanded="true" />
-            <element signature="e#230#231#0" expanded="true" />
-            <element signature="e#292#293#0" expanded="true" />
-            <element signature="e#349#350#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Generator/CellularAutomaton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -884,8 +853,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="32" column="52" lean-forward="true" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
+        <state relative-caret-position="340">
+          <caret line="32" column="52" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -902,15 +871,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WireWorld.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Board/Cell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
+        <state relative-caret-position="183">
           <caret line="91" column="41" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
           <folding>
-            <element signature="e#977#978#0" expanded="true" />
-            <element signature="e#1009#1010#0" expanded="true" />
-            <element signature="e#1056#1057#0" expanded="true" />
-            <element signature="e#1098#1099#0" expanded="true" />
             <element signature="method#changeColor#0;class#Cell#0" />
             <element signature="method#setColorAndStatus#0;class#Cell#0" />
             <element signature="method#setColor#0;class#Cell#0" />
@@ -918,47 +886,92 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Board/Template.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
+          <folding>
+            <element signature="method#addToBoard#0;class#Template#0" />
+            <element signature="method#addRight#0;class#Template#0" />
+            <element signature="method#addDown#0;class#Template#0" />
+            <element signature="method#addLeft#0;class#Template#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/TemplateDirectionMenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding>
+            <element signature="e#369#370#0" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fxml/TemplateDirectionMenu.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fxml/MainScreen.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="19" lean-forward="true" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Board/BoardMaker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="116" column="22" selection-start-line="116" selection-start-column="22" selection-end-line="116" selection-end-column="22" />
+        <state relative-caret-position="152">
+          <caret line="317" column="32" selection-start-line="317" selection-start-column="32" selection-end-line="317" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#635#636#0" expanded="true" />
+            <element signature="e#704#705#0" expanded="true" />
+            <element signature="e#760#761#0" expanded="true" />
             <element signature="method#makeBoard#0;class#BoardMaker#0" />
             <element signature="method#makeBoard#1;class#BoardMaker#0" />
+            <element signature="method#makeBoard#2;class#BoardMaker#0" />
+            <element signature="e#4905#4906#0" expanded="true" />
+            <element signature="e#4976#4977#0" expanded="true" />
             <element signature="method#repaintBoardOnPrevious#0;class#BoardMaker#0" />
             <element signature="method#repaintBoard#0;class#BoardMaker#0" />
             <element signature="method#setBoardColor#0;class#BoardMaker#0" />
             <element signature="method#setBoardStatus#0;class#BoardMaker#0" />
             <element signature="method#setTemplateInsertionMode#0;class#BoardMaker#0" />
-            <element signature="method#setColorMode#0;class#BoardMaker#0" />
+            <element signature="e#10309#10310#0" expanded="true" />
+            <element signature="e#10388#10389#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Board/Templates.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
+          <folding>
+            <element signature="e#184#185#0" expanded="true" />
+            <element signature="e#230#231#0" expanded="true" />
+            <element signature="e#292#293#0" expanded="true" />
+            <element signature="e#349#350#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/MainScreenController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="197" column="27" selection-start-line="197" selection-start-column="16" selection-end-line="197" selection-end-column="27" />
+        <state relative-caret-position="119">
+          <caret line="163" column="26" lean-forward="true" selection-start-line="163" selection-start-column="26" selection-end-line="163" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#clear#0;class#MainScreenController#0" />
-            <element signature="method#colorMenu#0;class#MainScreenController#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Board/Template.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="71" column="58" selection-start-line="71" selection-start-column="58" selection-end-line="71" selection-end-column="58" />
-          <folding>
-            <element signature="method#addToBoard#0;class#Template#0" />
-            <element signature="e#1482#1483#0" expanded="true" />
-            <element signature="e#1505#1506#0" expanded="true" />
-            <element signature="method#addRight#0;class#Template#0" />
-            <element signature="method#addDown#0;class#Template#0" />
-            <element signature="method#addLeft#0;class#Template#0" />
+            <element signature="method#testFigure5#0;class#MainScreenController#0" />
           </folding>
         </state>
       </provider>

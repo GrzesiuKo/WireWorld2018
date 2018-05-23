@@ -12,7 +12,13 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainScreenController">
 	<children>
-      <Pane fx:id="board" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" />
+      <Pane fx:id="board" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="up" layoutX="276.0" layoutY="262.0" mnemonicParsing="false" onAction="#directionUp" prefHeight="10.0" prefWidth="50.0" text="Up" />
+            <Button fx:id="left" layoutX="226.0" layoutY="287.0" mnemonicParsing="false" onAction="#directionLeft" prefHeight="10.0" prefWidth="50.0" text="Left" />
+            <Button fx:id="down" layoutX="276.0" layoutY="312.0" mnemonicParsing="false" onAction="#directionDown" prefHeight="10.0" prefWidth="50.0" text="Down" />
+            <Button fx:id="right" layoutX="326.0" layoutY="287.0" mnemonicParsing="false" onAction="#directionRight" prefHeight="10.0" prefWidth="50.0" text="Right" />
+         </children></Pane>
       <JFXTextField layoutX="620.0" layoutY="72.0" promptText="Enter file name" />
       <JFXButton fx:id="load" buttonType="RAISED" contentDisplay="CENTER" layoutX="662.0" layoutY="114.0" onAction="#loadFile" style="-fx-background-color: #D84315;" text="Load" />
       <VBox alignment="CENTER" layoutX="656.0" layoutY="184.0" prefHeight="167.0" prefWidth="55.0" spacing="40.0">
@@ -39,7 +45,7 @@
             <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#testFigure2" text="Figure 2" GridPane.columnIndex="1" />
             <Button mnemonicParsing="false" onAction="#testFigure3" text="Figure 3" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#testFigure4" text="Figure 4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="Figure 5" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#testFigure5" text="Figure 5" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" text="Figure 6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>

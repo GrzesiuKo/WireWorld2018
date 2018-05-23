@@ -2,6 +2,7 @@ package Board;
 
 import GUI.Colors;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
@@ -12,6 +13,7 @@ public class BoardMaker {
     private ArrayList<Cell> board;
     private int width;
     private int height;
+    private int currentBoardMode;
 
     public BoardMaker() {
         this.width = 0;
@@ -23,7 +25,16 @@ public class BoardMaker {
         return board;
     }
 
+    public int getCurrentBoardMode() {
+        return currentBoardMode;
+    }
+
+    public void setCurrentBoardMode(int currentBoardMode) {
+        this.currentBoardMode = currentBoardMode;
+    }
+
     public void makeBoard(Template template, Colors colors, Pane pane, int rectSideLength) {
+        currentBoardMode = 0;
         int xColumns = template.getWidth();
         int yRows = template.getHeight();
 
@@ -58,6 +69,7 @@ public class BoardMaker {
     }
 
     public void makeBoard(Colors colors, Pane pane, int xColumns, int yRows, int rectSideLength) {
+        currentBoardMode = 0;
         Integer id = 0;
         int x = 0;
         int y = 0;
@@ -114,6 +126,7 @@ public class BoardMaker {
 
     /*Wersja poniżej jest dla metody initialize w kontrolerze, ponieważ pane.getHeight() zwraca tam zawsze zero, nie wiedzieć czemu?*/
     public void makeBoard(Colors colors, Pane pane, int xColumns, int yRows, int rectSideLength, int paneSizeX, int paneSizeY) {
+        currentBoardMode = 0;
         Integer id = 0;
         int x = 0;
         int y = 0;
@@ -212,12 +225,13 @@ public class BoardMaker {
             lastIndex--;
         }
     }
-    public void setBoardColor(Paint paint) {
+    public void setBoardColor(int x) {
+        currentBoardMode = 0;
         int lastIndex = width * height - 1;
         while (lastIndex >= 0) {
 
-            board.get(lastIndex).setFill(paint);
-
+            board.get(lastIndex).setColorAndStatus(x);
+            board.get(lastIndex).setPrevColor(x);
             lastIndex--;
         }
     }
@@ -240,7 +254,8 @@ public class BoardMaker {
         return height;
     }
 
-    public void setTemplateInsertionMode(Template template, int direction) {
+    public void setTemplateInsertionMode(Template template, int direction, int modeID) {
+        currentBoardMode = modeID;
         this.repaintBoard();
         int lastIndex = width * height - 1;
         while (lastIndex >= 0) {
@@ -279,7 +294,7 @@ public class BoardMaker {
     }
 
     public void setColorMode() {
-
+        currentBoardMode = 0;
         int lastIndex = width * height - 1;
         while (lastIndex >= 0) {
             int finalLastIndex = lastIndex;
@@ -297,6 +312,16 @@ public class BoardMaker {
             lastIndex--;
         }
     }
-
+    public void setInsensitiveMode() {
+        currentBoardMode = -1;
+        int lastIndex = width * height - 1;
+        while (lastIndex >= 0) {
+            board.get(lastIndex).setOnMouseClicked(null);
+            board.get(lastIndex).setOnMouseDragEntered(null);
+            board.get(lastIndex).setOnMouseExited(null);
+            board.get(lastIndex).setOnMouseEntered(null);
+            lastIndex--;
+        }
+    }
 }
 
