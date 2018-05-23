@@ -11,8 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -29,6 +32,12 @@ public class MainScreenController {
 
     private BoardAdapter adapter;
     private GeneratorHandler genHandler;
+
+    @FXML
+    Label stateLabel;
+
+    @FXML
+    Circle stateCircle;
 
     @FXML
     AnchorPane anchorPane;
@@ -79,10 +88,10 @@ public class MainScreenController {
 
         adapter = new BoardAdapter(boardMaker);
         genHandler = new GeneratorHandler(1000, adapter);
-        adapter.setCellStateAt(29,0,3);
-        adapter.setCellStateAt(29,29,3);
+        //adapter.setCellStateAt(29,0,3);
+        //adapter.setCellStateAt(29,29,3);
         genHandler.start();
-        genHandler.playGenerator();
+        //genHandler.playGenerator();
     }
 
     public void setStage(Stage stage) {
@@ -104,10 +113,12 @@ public class MainScreenController {
 
     public void goAnimation() {
         genHandler.playGenerator();
+        isAniamtionRunningSignal(true);
     }
 
     public void pauseAnimation() {
         genHandler.pauseGenerator();
+        isAniamtionRunningSignal(false);
     }
 
     public void haltAnimation() {
@@ -115,6 +126,8 @@ public class MainScreenController {
     }
 
     public void clear() {
+        genHandler.pauseGenerator();
+        isAniamtionRunningSignal(false);
         boardMaker.setBoardColor(0);
     }
 
@@ -301,5 +314,13 @@ public class MainScreenController {
         color.setDisable(x);
 
     }
-
+    public void isAniamtionRunningSignal(boolean x){
+        if (x){
+            stateCircle.setFill(Paint.valueOf("#31ff21"));
+            stateLabel.setText("Running!");
+        }else{
+            stateCircle.setFill(Paint.valueOf("#f00202"));
+            stateLabel.setText("Stopped");
+        }
+    }
 }
