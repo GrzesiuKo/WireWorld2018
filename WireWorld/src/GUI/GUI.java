@@ -32,6 +32,7 @@ public class GUI extends Application {
 
         MainScreenController mainScreenController = loader.getController();
         mainScreenController.setStage(primaryStage);
+        mainScreenController.setScene(scene);
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {

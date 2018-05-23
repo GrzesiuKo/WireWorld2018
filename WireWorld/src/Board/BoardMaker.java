@@ -1,15 +1,18 @@
 package Board;
 
 import GUI.Colors;
+import GUI.MainScreenController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 
 import java.util.ArrayList;
 
 public class BoardMaker {
+    private MainScreenController mainScreenController;
     private ArrayList<Cell> board;
     private int width;
     private int height;
@@ -19,6 +22,10 @@ public class BoardMaker {
         this.width = 0;
         this.height = 0;
         board = new ArrayList<Cell>();
+    }
+
+    public void setMainScreenController(MainScreenController mainScreenController) {
+        this.mainScreenController = mainScreenController;
     }
 
     public ArrayList<Cell> getBoard() {
@@ -256,23 +263,32 @@ public class BoardMaker {
 
     public void setTemplateInsertionMode(Template template, int direction, int modeID) {
         currentBoardMode = modeID;
-        this.repaintBoard();
+        //this.repaintBoard();
         int lastIndex = width * height - 1;
+        int end = 0;
         while (lastIndex >= 0) {
+
             int finalLastIndex = lastIndex;
-            BoardMaker finalBoardMaker = this;
+            int finalEnd = end;
+            BoardMaker boardMaker = this;
+
             EventHandler<MouseEvent> handler1 = new EventHandler<MouseEvent>() {
+
                 @Override
                 public void handle(MouseEvent event) {
-                    template.addToBoard(finalBoardMaker, board.get(finalLastIndex), direction);
+                    template.addToBoard(boardMaker, board.get(finalLastIndex), direction);
                     setColorMode();
+                    mainScreenController.closeHint();
+                    mainScreenController.getScene().setOnScroll(null);
+                    mainScreenController.getScene().setOnKeyPressed(null);
                 }
+
             };
 
             EventHandler<MouseEvent> handler2 = new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    template.addToBoard(finalBoardMaker, board.get(finalLastIndex), direction);
+                    template.addToBoard(boardMaker, board.get(finalLastIndex), direction);
 
                 }
             };
@@ -280,13 +296,31 @@ public class BoardMaker {
             EventHandler<MouseEvent> handler3 = new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    finalBoardMaker.repaintBoardOnPrevious();
+                    boardMaker.repaintBoardOnPrevious();
 
                 }
             };
+
+            EventHandler<ScrollEvent> handlerScroll = new EventHandler<ScrollEvent>() {
+                int whichDirection = direction;
+                @Override
+                public void handle(ScrollEvent event) {
+                    if(boardMaker.getCurrentBoardMode() != 0){
+                        if (whichDirection == 3) {
+                            whichDirection = 0;
+                        } else {
+                            whichDirection++;
+                        }
+                        boardMaker.repaintBoardOnPrevious();
+                        template.addToBoard(boardMaker, board.get(finalLastIndex), whichDirection);
+                    }
+                }
+            };
+
             board.get(lastIndex).setOnMouseClicked(handler1);
             board.get(lastIndex).setOnMouseEntered(handler2);
             board.get(lastIndex).setOnMouseExited(handler3);
+            board.get(lastIndex).setOnScroll(handlerScroll);
 
 
             lastIndex--;
@@ -298,7 +332,6 @@ public class BoardMaker {
         int lastIndex = width * height - 1;
         while (lastIndex >= 0) {
             int finalLastIndex = lastIndex;
-            BoardMaker finalBoardMaker = this;
             EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {

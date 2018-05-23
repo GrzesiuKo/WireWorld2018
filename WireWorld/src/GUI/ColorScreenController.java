@@ -48,8 +48,8 @@ public class ColorScreenController {
 
     public void defaultColors() {
 
-        head.setValue(Color.valueOf("#f9f50e"));
-        tail.setValue(Color.valueOf("#f10606"));
+        head.setValue(Color.valueOf("#f10606"));
+        tail.setValue(Color.valueOf("#f9f50e"));
         conductor.setValue(Color.valueOf("#000000"));
         empty.setValue(Color.valueOf("#FFFFFF"));
     }

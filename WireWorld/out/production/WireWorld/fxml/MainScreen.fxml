@@ -14,16 +14,10 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainScreenController">
 	<children>
-      <Pane fx:id="board" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0">
-         <children>
-            <Button fx:id="up" layoutX="276.0" layoutY="262.0" mnemonicParsing="false" onAction="#directionUp" prefHeight="10.0" prefWidth="50.0" text="Up" />
-            <Button fx:id="left" layoutX="226.0" layoutY="287.0" mnemonicParsing="false" onAction="#directionLeft" prefHeight="10.0" prefWidth="50.0" text="Left" />
-            <Button fx:id="down" layoutX="276.0" layoutY="312.0" mnemonicParsing="false" onAction="#directionDown" prefHeight="10.0" prefWidth="50.0" text="Down" />
-            <Button fx:id="right" layoutX="326.0" layoutY="287.0" mnemonicParsing="false" onAction="#directionRight" prefHeight="10.0" prefWidth="50.0" text="Right" />
-         </children></Pane>
-      <JFXTextField layoutX="620.0" layoutY="72.0" promptText="Enter file name" />
-      <JFXButton fx:id="load" buttonType="RAISED" contentDisplay="CENTER" layoutX="662.0" layoutY="114.0" onAction="#loadFile" style="-fx-background-color: #D84315;" text="Load" />
-      <VBox alignment="CENTER" layoutX="656.0" layoutY="184.0" prefHeight="167.0" prefWidth="55.0" spacing="40.0">
+      <Pane fx:id="board" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" />
+      <JFXTextField layoutX="626.0" layoutY="61.0" promptText="Enter file name" />
+      <JFXButton fx:id="load" buttonType="RAISED" contentDisplay="CENTER" layoutX="668.0" layoutY="103.0" onAction="#loadFile" style="-fx-background-color: #D84315;" text="Load" />
+      <VBox alignment="CENTER" layoutX="662.0" layoutY="173.0" prefHeight="167.0" prefWidth="55.0" spacing="40.0">
          <children>
             <JFXButton fx:id="go" buttonType="RAISED" contentDisplay="CENTER" onAction="#goAnimation" style="-fx-background-color: #8BC34A;" text="GO" />
             <JFXButton fx:id="pause" onAction="#pauseAnimation" style="-fx-background-color: #FFCA28;" text="Pause" />
@@ -31,8 +25,8 @@
             <JFXButton fx:id="clear" buttonType="RAISED" contentDisplay="CENTER" onAction="#clear" style="-fx-background-color: #03A9F4;" text="Clear" />
          </children>
       </VBox>
-      <JFXButton fx:id="color" layoutX="662.0" layoutY="435.0" onAction="#colorMenu" style="-fx-background-color: #F8BBD0;" text="Color" />
-      <GridPane alignment="CENTER" layoutX="611.0" layoutY="472.0">
+      <JFXButton fx:id="color" layoutX="668.0" layoutY="424.0" onAction="#colorMenu" style="-fx-background-color: #F8BBD0;" text="Color" />
+      <GridPane alignment="CENTER" layoutX="617.0" layoutY="461.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="100.0" />
@@ -43,15 +37,16 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#testFigure1" prefHeight="25.0" prefWidth="64.0" text="X-Wing" />
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#testFigure2" prefHeight="25.0" prefWidth="64.0" text="Diode" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" onAction="#testFigure3" prefHeight="25.0" prefWidth="64.0" text="Figure 3" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#testFigure4" prefHeight="25.0" prefWidth="64.0" text="Figure 4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#testFigure5" prefHeight="25.0" prefWidth="64.0" text="Figure 5" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" text="Figure 6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="figure1" mnemonicParsing="false" onAction="#testFigure1" prefHeight="25.0" prefWidth="64.0" text="X-Wing" />
+            <Button fx:id="figure2" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#testFigure2" prefHeight="25.0" prefWidth="64.0" text="Diode" GridPane.columnIndex="1" />
+            <Button fx:id="figure3" mnemonicParsing="false" onAction="#testFigure3" prefHeight="25.0" prefWidth="64.0" text="Figure 3" GridPane.rowIndex="1" />
+            <Button fx:id="figure4" mnemonicParsing="false" onAction="#testFigure4" prefHeight="25.0" prefWidth="64.0" text="Figure 4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="figure5" mnemonicParsing="false" onAction="#testFigure5" prefHeight="25.0" prefWidth="64.0" text="Figure 5" GridPane.rowIndex="2" />
+            <Button fx:id="figure6" mnemonicParsing="false" onAction="#testFigure6" prefHeight="25.0" prefWidth="64.0" text="Figure 6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Circle fx:id="stateCircle" fill="#f00202" layoutX="649.0" layoutY="47.0" radius="11.0" stroke="#f5f2f2" strokeType="INSIDE" />
-      <Label fx:id="stateLabel" layoutX="672.0" layoutY="36.0" prefHeight="22.0" prefWidth="59.0" text="Stopped" textOverrun="WORD_ELLIPSIS" />
+      <Circle fx:id="stateCircle" fill="#f00202" layoutX="655.0" layoutY="36.0" radius="11.0" stroke="#f5f2f2" strokeType="INSIDE" />
+      <Label fx:id="stateLabel" layoutX="678.0" layoutY="25.0" prefHeight="22.0" prefWidth="59.0" text="Stopped" textOverrun="WORD_ELLIPSIS" />
+      <Label fx:id="hintTemplateLabel" alignment="CENTER" layoutX="600.0" layoutY="551.0" prefHeight="42.0" prefWidth="200.0" style="-fx-border-color: #800080;" text="    Hint: Press 'X' to abort template :)" visible="false" />
 	</children>
 </AnchorPane>

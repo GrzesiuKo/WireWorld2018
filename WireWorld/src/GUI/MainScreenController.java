@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
@@ -27,6 +29,7 @@ import java.util.ArrayList;
 
 
 public class MainScreenController {
+    private Scene scene;
     private Templates templates;
     private Template currentTemplate;
     private BoardMaker boardMaker;
@@ -38,6 +41,10 @@ public class MainScreenController {
 
     @FXML
     Label stateLabel;
+
+    @FXML
+    Label hintTemplateLabel;
+
 
     @FXML
     Circle stateCircle;
@@ -66,38 +73,35 @@ public class MainScreenController {
     @FXML
     JFXButton color;
 
-    @FXML
-    Button up;
 
     @FXML
-    Button down;
+    Button figure1;
 
     @FXML
-    Button left;
+    Button figure2;
 
     @FXML
-    Button right;
+    Button figure3;
 
+    @FXML
+    Button figure4;
+    @FXML
+    Button figure5;
+
+    @FXML
+    Button figure6;
 
     @FXML
     JFXTextField path;
-
 
 
     @FXML
     public void initialize() {
         colors = new Colors();
         boardMaker = new BoardMaker();
-
+        boardMaker.setMainScreenController(this);
         boardMaker.makeBoard(colors, board, 100, 100, 20, 600, 600);
 
-
-        up.toFront();
-        down.toFront();
-        right.toFront();
-        left.toFront();
-
-        showDirectionButtons(false);
 
         adapter = new BoardAdapter(boardMaker);
         genHandler = new GeneratorHandler(1000, adapter);
@@ -107,6 +111,18 @@ public class MainScreenController {
         //genHandler.playGenerator();
 
 
+    }
+
+    public Label getHintTemplateLabel() {
+        return hintTemplateLabel;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public Scene getScene() {
+        return scene;
     }
 
     public void setStage(Stage stage) {
@@ -130,16 +146,22 @@ public class MainScreenController {
     }
 
     public void goAnimation() {
+        boardMaker.setInsensitiveMode();
+        disableTemplateButtons(true);
         genHandler.playGenerator();
         isAnimationRunningSignal(true);
     }
 
     public void pauseAnimation() {
+        boardMaker.setColorMode();
+        disableTemplateButtons(false);
         genHandler.pauseGenerator();
         isAnimationRunningSignal(false);
     }
 
     public void haltAnimation() {
+        disableTemplateButtons(false);
+        boardMaker.setColorMode();
 
     }
 
@@ -147,6 +169,9 @@ public class MainScreenController {
         genHandler.pauseGenerator();
         isAnimationRunningSignal(false);
         boardMaker.setBoardColor(0);
+        boardMaker.setColorMode();
+        disableTemplateButtons(false);
+
     }
 
     public void colorMenu() {
@@ -177,17 +202,10 @@ public class MainScreenController {
 
     }
 
-    public void showDirectionButtons(boolean x) {
-        up.setVisible(x);
-        right.setVisible(x);
-        down.setVisible(x);
-        left.setVisible(x);
-    }
-
 
     public void testFigure1() {
-        disableNonTemplateButtons(true);
-        showDirectionButtons(true);
+        hintTemplateLabel.setVisible(true);
+        boardMaker.repaintBoard();
         boardMaker.setInsensitiveMode();
 
 
@@ -201,16 +219,42 @@ public class MainScreenController {
                 list.add(color);
                 amount--;
             }
-            list.set(0,1);
-            list.set(20,1);
-            list.set(6,1);
-            list.set(16,1);
-            list.set(12,1);
-            list.set(13,1);
-            list.set(14,1);
+            list.set(0, 1);
+            list.set(20, 1);
+            list.set(6, 1);
+            list.set(16, 1);
+            list.set(12, 1);
+            list.set(13, 1);
+            list.set(14, 1);
 
             Template template = new Template(width, height, list);
             currentTemplate = template;
+            boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
+
+            scene.setOnKeyPressed(e -> {
+                if (e.getCode() == KeyCode.X) {
+                    boardMaker.setColorMode();
+                    boardMaker.repaintBoardOnPrevious();
+                    closeHint();
+                    scene.setOnScroll(null);
+                    scene.setOnKeyPressed(null);
+                }
+            });
+            scene.setOnScroll(new EventHandler<ScrollEvent>() {
+                int whichDirection = 1;
+
+                @Override
+                public void handle(ScrollEvent event) {
+                    if (whichDirection == 3) {
+                        whichDirection = 0;
+                    } else {
+                        whichDirection++;
+                    }
+                    boardMaker.setTemplateInsertionMode(currentTemplate, whichDirection, boardMaker.getCurrentBoardMode());
+
+
+                }
+            });
 
             boardMaker.setCurrentBoardMode(1);
         }
@@ -219,8 +263,10 @@ public class MainScreenController {
     }
 
     public void testFigure2() {
-        showDirectionButtons(true);
-        disableNonTemplateButtons(true);
+        hintTemplateLabel.setVisible(true);
+        boardMaker.repaintBoard();
+        boardMaker.setInsensitiveMode();
+
         if (boardMaker.getCurrentBoardMode() != 2) {
             ArrayList<Integer> list = new ArrayList<>();
             int height = 3;
@@ -231,16 +277,43 @@ public class MainScreenController {
                 list.add(color);
                 amount--;
             }
-            list.set(4,1);
-            list.set(5,1);
-            list.set(1,1);
-            list.set(2,1);
-            list.set(7,1);
-            list.set(9,1);
-            list.set(10,1);
+            list.set(4, 1);
+            list.set(5, 1);
+            list.set(1, 1);
+            list.set(2, 1);
+            list.set(7, 1);
+            list.set(9, 1);
+            list.set(10, 1);
 
             Template template = new Template(width, height, list);
             currentTemplate = template;
+            boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
+
+            scene.setOnKeyPressed(e -> {
+                if (e.getCode() == KeyCode.X) {
+                    boardMaker.setColorMode();
+                    boardMaker.repaintBoardOnPrevious();
+                    closeHint();
+                    scene.setOnScroll(null);
+                    scene.setOnKeyPressed(null);
+                }
+            });
+
+            scene.setOnScroll(new EventHandler<ScrollEvent>() {
+                int whichDirection = 1;
+
+                @Override
+                public void handle(ScrollEvent event) {
+                    if (whichDirection == 3) {
+                        whichDirection = 0;
+                    } else {
+                        whichDirection++;
+                    }
+                    boardMaker.setTemplateInsertionMode(currentTemplate, whichDirection, boardMaker.getCurrentBoardMode());
+
+
+                }
+            });
 
             boardMaker.setCurrentBoardMode(2);
         }
@@ -248,8 +321,11 @@ public class MainScreenController {
     }
 
     public void testFigure3() {
-        showDirectionButtons(true);
-        disableNonTemplateButtons(true);
+        hintTemplateLabel.setVisible(true);
+
+        boardMaker.repaintBoard();
+        boardMaker.setInsensitiveMode();
+
         if (boardMaker.getCurrentBoardMode() != 3) {
             ArrayList<Integer> list = new ArrayList<>();
             int height = 4;
@@ -261,18 +337,54 @@ public class MainScreenController {
                 list.add(color);
                 amount--;
             }
+            list.set(4, 1);
+            list.set(5, 1);
+            list.set(1, 1);
+            list.set(2, 1);
+            list.set(7, 1);
+            list.set(9, 1);
+            list.set(10, 1);
             Template template = new Template(width, height, list);
 
             currentTemplate = template;
+            boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
 
+            scene.setOnKeyPressed(e -> {
+                if (e.getCode() == KeyCode.X) {
+                    boardMaker.setColorMode();
+                    boardMaker.repaintBoardOnPrevious();
+                    closeHint();
+                    scene.setOnScroll(null);
+                    scene.setOnKeyPressed(null);
+                }
+            });
+
+            scene.setOnScroll(new EventHandler<ScrollEvent>() {
+                int whichDirection = 1;
+
+                @Override
+                public void handle(ScrollEvent event) {
+                    if (whichDirection == 3) {
+                        whichDirection = 0;
+                    } else {
+                        whichDirection++;
+                    }
+                    boardMaker.setTemplateInsertionMode(currentTemplate, whichDirection, boardMaker.getCurrentBoardMode());
+
+
+                }
+            });
             boardMaker.setCurrentBoardMode(3);
         }
 
     }
 
     public void testFigure4() {
-        showDirectionButtons(true);
-        disableNonTemplateButtons(true);
+        hintTemplateLabel.setVisible(true);
+
+        boardMaker.repaintBoard();
+        boardMaker.setInsensitiveMode();
+
         if (boardMaker.getCurrentBoardMode() != 4) {
             ArrayList<Integer> list = new ArrayList<>();
             int height = 4;
@@ -284,46 +396,165 @@ public class MainScreenController {
                 list.add(color);
                 amount--;
             }
+            list.set(4, 1);
+            list.set(5, 1);
+            list.set(1, 1);
+            list.set(2, 1);
+            list.set(7, 1);
+            list.set(9, 1);
+            list.set(10, 1);
             Template template = new Template(width, height, list);
-            currentTemplate = template;
 
+            currentTemplate = template;
+            boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
+
+            scene.setOnKeyPressed(e -> {
+                if (e.getCode() == KeyCode.X) {
+                    boardMaker.setColorMode();
+                    boardMaker.repaintBoardOnPrevious();
+                    closeHint();
+                    scene.setOnScroll(null);
+                    scene.setOnKeyPressed(null);
+                }
+            });
+
+            scene.setOnScroll(new EventHandler<ScrollEvent>() {
+                int whichDirection = 1;
+
+                @Override
+                public void handle(ScrollEvent event) {
+                    if (whichDirection == 3) {
+                        whichDirection = 0;
+                    } else {
+                        whichDirection++;
+                    }
+                    boardMaker.setTemplateInsertionMode(currentTemplate, whichDirection, boardMaker.getCurrentBoardMode());
+
+
+                }
+            });
             boardMaker.setCurrentBoardMode(4);
         }
-
 
     }
 
     public void testFigure5() {
+        hintTemplateLabel.setVisible(true);
+
+        boardMaker.repaintBoard();
+        boardMaker.setInsensitiveMode();
+
+        if (boardMaker.getCurrentBoardMode() != 5) {
+            ArrayList<Integer> list = new ArrayList<>();
+            int height = 4;
+            int width = 4;
+            int amount = height * width;
+            Integer color = 0;
+            while (amount > 0) {
+                color = 1 + amount % 3;
+                list.add(color);
+                amount--;
+            }
+            list.set(4, 1);
+            list.set(5, 1);
+            list.set(1, 1);
+            list.set(2, 1);
+            list.set(7, 1);
+            list.set(9, 1);
+            list.set(10, 1);
+            Template template = new Template(width, height, list);
+
+            currentTemplate = template;
+            boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
+
+            scene.setOnKeyPressed(e -> {
+                if (e.getCode() == KeyCode.X) {
+                    boardMaker.setColorMode();
+                    boardMaker.repaintBoardOnPrevious();
+                    closeHint();
+                    scene.setOnScroll(null);
+                    scene.setOnKeyPressed(null);
+                }
+            });
+
+            scene.setOnScroll(new EventHandler<ScrollEvent>() {
+                int whichDirection = 1;
+
+                @Override
+                public void handle(ScrollEvent event) {
+                    if (whichDirection == 3) {
+                        whichDirection = 0;
+                    } else {
+                        whichDirection++;
+                    }
+                    boardMaker.setTemplateInsertionMode(currentTemplate, whichDirection, boardMaker.getCurrentBoardMode());
+
+
+                }
+            });
+            boardMaker.setCurrentBoardMode(5);
+        }
+
     }
 
-    public void directionUp() {
-        showDirectionButtons(false);
-        disableNonTemplateButtons(false);
+    public void testFigure6() {
+        hintTemplateLabel.setVisible(true);
+        boardMaker.repaintBoard();
+        boardMaker.setInsensitiveMode();
 
-        boardMaker.setTemplateInsertionMode(currentTemplate, 0, boardMaker.getCurrentBoardMode());
+        if (boardMaker.getCurrentBoardMode() != 6) {
+            ArrayList<Integer> list = new ArrayList<>();
+            int height = 4;
+            int width = 4;
+            int amount = height * width;
+            Integer color = 0;
+            while (amount > 0) {
+                color = 1 + amount % 3;
+                list.add(color);
+                amount--;
+            }
+            list.set(4, 1);
+            list.set(5, 1);
+            list.set(1, 1);
+            list.set(2, 1);
+            list.set(7, 1);
+            list.set(9, 1);
+            list.set(10, 1);
+            Template template = new Template(width, height, list);
+
+            currentTemplate = template;
+            boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
+
+            scene.setOnKeyPressed(e -> {
+                if (e.getCode() == KeyCode.X) {
+                    boardMaker.setColorMode();
+                    boardMaker.repaintBoardOnPrevious();
+                    closeHint();
+                    scene.setOnScroll(null);
+                    scene.setOnKeyPressed(null);
+                }
+            });
+
+            scene.setOnScroll(new EventHandler<ScrollEvent>() {
+                int whichDirection = 1;
+
+                @Override
+                public void handle(ScrollEvent event) {
+                    if (whichDirection == 3) {
+                        whichDirection = 0;
+                    } else {
+                        whichDirection++;
+                    }
+                    boardMaker.setTemplateInsertionMode(currentTemplate, whichDirection, boardMaker.getCurrentBoardMode());
+
+
+                }
+            });
+            boardMaker.setCurrentBoardMode(6);
+        }
 
     }
 
-    public void directionRight() {
-        showDirectionButtons(false);
-        disableNonTemplateButtons(false);
-        boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
-
-    }
-
-    public void directionDown() {
-        showDirectionButtons(false);
-        disableNonTemplateButtons(false);
-        boardMaker.setTemplateInsertionMode(currentTemplate, 2, boardMaker.getCurrentBoardMode());
-
-    }
-
-
-    public void directionLeft() {
-        showDirectionButtons(false);
-        disableNonTemplateButtons(false);
-        boardMaker.setTemplateInsertionMode(currentTemplate, 3, boardMaker.getCurrentBoardMode());
-    }
 
     public void disableNonTemplateButtons(boolean x) {
         load.setDisable(x);
@@ -335,6 +566,16 @@ public class MainScreenController {
 
     }
 
+    public void disableTemplateButtons(boolean x) {
+        figure1.setDisable(x);
+        figure2.setDisable(x);
+        figure3.setDisable(x);
+        figure4.setDisable(x);
+        figure5.setDisable(x);
+        figure6.setDisable(x);
+
+    }
+
     public void isAnimationRunningSignal(boolean x) {
         if (x) {
             stateCircle.setFill(Paint.valueOf("#31ff21"));
@@ -343,5 +584,9 @@ public class MainScreenController {
             stateCircle.setFill(Paint.valueOf("#f00202"));
             stateLabel.setText("Stopped");
         }
+    }
+
+    public void closeHint() {
+        hintTemplateLabel.setVisible(false);
     }
 }
