@@ -3,6 +3,8 @@ package GUI;
 import Board.BoardMaker;
 import Board.Template;
 import Board.Templates;
+import Generator.BoardAdapter;
+import Generator.GeneratorHandler;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -24,6 +26,7 @@ public class MainScreenController {
     private BoardMaker boardMaker;
     private Stage stage;
     private Colors colors;
+    private GeneratorHandler genHandler;
 
     @FXML
     AnchorPane anchorPane;
@@ -71,6 +74,11 @@ public class MainScreenController {
         boardMaker = new BoardMaker();
 
         boardMaker.makeBoard(colors, board, 100, 100, 20, 600, 600);
+
+        BoardAdapter adapter = new BoardAdapter(boardMaker);
+        genHandler = new GeneratorHandler(500, adapter);
+        adapter.setCellStateAt(29,0,3);
+        adapter.setCellStateAt(29,29,3);
 
     }
 
