@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class BoardAdapter {
     private ArrayList<Cell> list;
-    private int hight = 0;
+    private int height = 0;
     private int width = 0;
 
     public BoardAdapter(BoardMaker board) {
         this.list = board.getBoard();
-        this.hight = board.getHeight();
+        this.height = board.getHeight();
         this.width = board.getWidth();
     }
 
@@ -25,7 +25,7 @@ public class BoardAdapter {
     }
 
     public int getHeight() {
-        return hight;
+        return height;
     }
 
     public int getWidth() {

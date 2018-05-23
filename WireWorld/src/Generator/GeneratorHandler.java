@@ -4,13 +4,21 @@ public class GeneratorHandler extends Thread {
     CellularAutomaton generator;
 
     int delay;
-    static boolean play = false;
+    static  boolean play = false;
+    private volatile boolean running = true;
 
     public GeneratorHandler(int delay, BoardAdapter adapter) {
         this.delay = delay;
         generator = new CellularAutomaton(adapter);
     }
-
+    public void terminate(){
+        running = false;
+        try {
+            join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     static public void pauseGenerator() {
         play = false;
     }
@@ -20,7 +28,7 @@ public class GeneratorHandler extends Thread {
     }
 
     public void run() {
-        while (true) {
+        while (running) {
             try {
                 while (play) {
                     generator.generateNextFrame();

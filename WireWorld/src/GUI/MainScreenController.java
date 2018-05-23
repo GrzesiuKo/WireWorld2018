@@ -7,6 +7,7 @@ import Generator.BoardAdapter;
 import Generator.GeneratorHandler;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,9 +20,11 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 
 public class MainScreenController {
     private Templates templates;
@@ -79,6 +82,8 @@ public class MainScreenController {
     @FXML
     JFXTextField path;
 
+
+
     @FXML
     public void initialize() {
         colors = new Colors();
@@ -86,12 +91,22 @@ public class MainScreenController {
 
         boardMaker.makeBoard(colors, board, 100, 100, 20, 600, 600);
 
+
+        up.toFront();
+        down.toFront();
+        right.toFront();
+        left.toFront();
+
+        showDirectionButtons(false);
+
         adapter = new BoardAdapter(boardMaker);
         genHandler = new GeneratorHandler(1000, adapter);
         //adapter.setCellStateAt(29,0,3);
         //adapter.setCellStateAt(29,29,3);
         genHandler.start();
         //genHandler.playGenerator();
+
+
     }
 
     public void setStage(Stage stage) {
@@ -106,6 +121,9 @@ public class MainScreenController {
         this.colors = colors;
     }
 
+    public GeneratorHandler getGenHandler() {
+        return genHandler;
+    }
 
     public void loadFile() {
 
@@ -113,12 +131,12 @@ public class MainScreenController {
 
     public void goAnimation() {
         genHandler.playGenerator();
-        isAniamtionRunningSignal(true);
+        isAnimationRunningSignal(true);
     }
 
     public void pauseAnimation() {
         genHandler.pauseGenerator();
-        isAniamtionRunningSignal(false);
+        isAnimationRunningSignal(false);
     }
 
     public void haltAnimation() {
@@ -127,7 +145,7 @@ public class MainScreenController {
 
     public void clear() {
         genHandler.pauseGenerator();
-        isAniamtionRunningSignal(false);
+        isAnimationRunningSignal(false);
         boardMaker.setBoardColor(0);
     }
 
@@ -159,43 +177,38 @@ public class MainScreenController {
 
     }
 
-    public void uncoverDirectionButtons() {
-        up.setVisible(true);
-        right.setVisible(true);
-        down.setVisible(true);
-        left.setVisible(true);
-
-        up.toFront();
-        down.toFront();
-        right.toFront();
-        left.toFront();
-
+    public void showDirectionButtons(boolean x) {
+        up.setVisible(x);
+        right.setVisible(x);
+        down.setVisible(x);
+        left.setVisible(x);
     }
 
-    public void coverDirectionButtons() {
-        up.setVisible(false);
-        right.setVisible(false);
-        down.setVisible(false);
-        left.setVisible(false);
-    }
 
     public void testFigure1() {
         disableNonTemplateButtons(true);
-        uncoverDirectionButtons();
+        showDirectionButtons(true);
         boardMaker.setInsensitiveMode();
 
 
         if (boardMaker.getCurrentBoardMode() != 1) {
             ArrayList<Integer> list = new ArrayList<>();
-            int height = 4;
-            int width = 4;
+            int height = 5;
+            int width = 5;
             int amount = height * width;
             Integer color = 0;
             while (amount > 0) {
-                color = 1 + amount % 3;
                 list.add(color);
                 amount--;
             }
+            list.set(0,1);
+            list.set(20,1);
+            list.set(6,1);
+            list.set(16,1);
+            list.set(12,1);
+            list.set(13,1);
+            list.set(14,1);
+
             Template template = new Template(width, height, list);
             currentTemplate = template;
 
@@ -206,19 +219,26 @@ public class MainScreenController {
     }
 
     public void testFigure2() {
-        uncoverDirectionButtons();
+        showDirectionButtons(true);
         disableNonTemplateButtons(true);
         if (boardMaker.getCurrentBoardMode() != 2) {
             ArrayList<Integer> list = new ArrayList<>();
-            int height = 4;
+            int height = 3;
             int width = 4;
             int amount = height * width;
             Integer color = 0;
             while (amount > 0) {
-                color = 1 + amount % 3;
                 list.add(color);
                 amount--;
             }
+            list.set(4,1);
+            list.set(5,1);
+            list.set(1,1);
+            list.set(2,1);
+            list.set(7,1);
+            list.set(9,1);
+            list.set(10,1);
+
             Template template = new Template(width, height, list);
             currentTemplate = template;
 
@@ -228,7 +248,7 @@ public class MainScreenController {
     }
 
     public void testFigure3() {
-        uncoverDirectionButtons();
+        showDirectionButtons(true);
         disableNonTemplateButtons(true);
         if (boardMaker.getCurrentBoardMode() != 3) {
             ArrayList<Integer> list = new ArrayList<>();
@@ -251,7 +271,7 @@ public class MainScreenController {
     }
 
     public void testFigure4() {
-        uncoverDirectionButtons();
+        showDirectionButtons(true);
         disableNonTemplateButtons(true);
         if (boardMaker.getCurrentBoardMode() != 4) {
             ArrayList<Integer> list = new ArrayList<>();
@@ -277,7 +297,7 @@ public class MainScreenController {
     }
 
     public void directionUp() {
-        coverDirectionButtons();
+        showDirectionButtons(false);
         disableNonTemplateButtons(false);
 
         boardMaker.setTemplateInsertionMode(currentTemplate, 0, boardMaker.getCurrentBoardMode());
@@ -285,14 +305,14 @@ public class MainScreenController {
     }
 
     public void directionRight() {
-        coverDirectionButtons();
+        showDirectionButtons(false);
         disableNonTemplateButtons(false);
         boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
 
     }
 
     public void directionDown() {
-        coverDirectionButtons();
+        showDirectionButtons(false);
         disableNonTemplateButtons(false);
         boardMaker.setTemplateInsertionMode(currentTemplate, 2, boardMaker.getCurrentBoardMode());
 
@@ -300,7 +320,7 @@ public class MainScreenController {
 
 
     public void directionLeft() {
-        coverDirectionButtons();
+        showDirectionButtons(false);
         disableNonTemplateButtons(false);
         boardMaker.setTemplateInsertionMode(currentTemplate, 3, boardMaker.getCurrentBoardMode());
     }
@@ -314,11 +334,12 @@ public class MainScreenController {
         color.setDisable(x);
 
     }
-    public void isAniamtionRunningSignal(boolean x){
-        if (x){
+
+    public void isAnimationRunningSignal(boolean x) {
+        if (x) {
             stateCircle.setFill(Paint.valueOf("#31ff21"));
             stateLabel.setText("Running!");
-        }else{
+        } else {
             stateCircle.setFill(Paint.valueOf("#f00202"));
             stateLabel.setText("Stopped");
         }

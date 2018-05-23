@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.awt.event.MouseEvent;
 
@@ -31,6 +32,16 @@ public class GUI extends Application {
 
         MainScreenController mainScreenController = loader.getController();
         mainScreenController.setStage(primaryStage);
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+
+                    mainScreenController.getGenHandler().terminate();
+
+
+            }
+        });
+
     }
 
     public static void main(String[] args) {
