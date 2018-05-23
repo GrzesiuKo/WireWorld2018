@@ -17,7 +17,6 @@ public class CellularAutomaton {
         this.tmpMatrix = new int[width][hight];
         this.neighbours = new Neighbours(adapter);
         this.rules = new Rules();
-        System.out.println("Hight :" + hight + " Width: "+ width);
     }
 
     public void generateNextFrame() {
