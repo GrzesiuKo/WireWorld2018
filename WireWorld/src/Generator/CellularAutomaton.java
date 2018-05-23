@@ -30,7 +30,6 @@ public class CellularAutomaton {
     }
 
     private void updateBoard(int[][] tmp) {
-        System.out.println("Updatuje");
         for (int y = 0; y < hight; y++) {
             for (int x = 0; x < width; x++) {
                 adapter.setCellStateAt(x, y, tmp[x][y]);

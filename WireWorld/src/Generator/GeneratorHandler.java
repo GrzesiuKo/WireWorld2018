@@ -21,14 +21,18 @@ public class GeneratorHandler extends Thread {
 
     public void run() {
         while (true) {
-            while (play) {
-                System.out.println("PracujePracujePracuje :D");
-                generator.generateNextFrame();
-                try {
-                    Thread.sleep(delay);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            try {
+                while (play) {
+                    generator.generateNextFrame();
+                    try {
+                        Thread.sleep(delay);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
