@@ -43,12 +43,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#testFigure1" text="Figure 1" />
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#testFigure2" text="Figure 2" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" onAction="#testFigure3" text="Figure 3" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#testFigure4" text="Figure 4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#testFigure5" text="Figure 5" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" text="Figure 6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#testFigure1" prefHeight="25.0" prefWidth="64.0" text="X-Wing" />
+            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#testFigure2" prefHeight="25.0" prefWidth="64.0" text="Diode" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#testFigure3" prefHeight="25.0" prefWidth="64.0" text="Figure 3" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#testFigure4" prefHeight="25.0" prefWidth="64.0" text="Figure 4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#testFigure5" prefHeight="25.0" prefWidth="64.0" text="Figure 5" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" text="Figure 6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Circle fx:id="stateCircle" fill="#f00202" layoutX="649.0" layoutY="47.0" radius="11.0" stroke="#f5f2f2" strokeType="INSIDE" />
