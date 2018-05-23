@@ -12,6 +12,7 @@ public class GeneratorHandler extends Thread {
         generator = new CellularAutomaton(adapter);
     }
     public void terminate(){
+        pauseGenerator();
         running = false;
         try {
             join();
