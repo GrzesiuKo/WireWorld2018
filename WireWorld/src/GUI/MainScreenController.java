@@ -6,6 +6,7 @@ import Board.Templates;
 import Generator.BoardAdapter;
 import Generator.GeneratorHandler;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,7 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -22,7 +22,6 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class MainScreenController {
     Label stateLabel;
 
     @FXML
-    Label hintTemplateLabel;
+    JFXTextArea hint;
 
 
     @FXML
@@ -104,7 +103,7 @@ public class MainScreenController {
 
 
         adapter = new BoardAdapter(boardMaker);
-        genHandler = new GeneratorHandler(1000, adapter);
+        genHandler = new GeneratorHandler(500, adapter);
         //adapter.setCellStateAt(29,0,3);
         //adapter.setCellStateAt(29,29,3);
         genHandler.start();
@@ -113,8 +112,8 @@ public class MainScreenController {
 
     }
 
-    public Label getHintTemplateLabel() {
-        return hintTemplateLabel;
+    public JFXTextArea getHint() {
+        return hint;
     }
 
     public void setScene(Scene scene) {
@@ -162,6 +161,8 @@ public class MainScreenController {
     public void haltAnimation() {
         disableTemplateButtons(false);
         boardMaker.setColorMode();
+        genHandler.pauseGenerator();
+        isAnimationRunningSignal(false);
 
     }
 
@@ -202,44 +203,68 @@ public class MainScreenController {
 
     }
 
-
-    public void testFigure1() {
-        hintTemplateLabel.setVisible(true);
+    public void manageTemplateInsertion(Template template, int insertionBoardMode) {
+        hint.setVisible(true);
         boardMaker.repaintBoard();
         boardMaker.setInsensitiveMode();
+        if (boardMaker.getCurrentBoardMode() != insertionBoardMode) {
 
+            if (template == null && insertionBoardMode != 1 && insertionBoardMode != 2) {
+                ArrayList<Integer> list = new ArrayList<>();
+                int height = 4;
+                int width = 4;
+                int amount = height * width;
+                Integer color = 0;
+                while (amount > 0) {
+                    color = 1 + amount % 3;
+                    list.add(color);
+                    amount--;
+                }
+                currentTemplate = new Template(width, height, list);
+            } else if (insertionBoardMode == 1) {
+                ArrayList<Integer> list = new ArrayList<>();
+                int height = 5;
+                int width = 5;
+                int amount = height * width;
+                Integer color = 0;
+                while (amount > 0) {
+                    list.add(color);
+                    amount--;
+                }
+                list.set(0, 1);
+                list.set(20, 1);
+                list.set(6, 1);
+                list.set(16, 1);
+                list.set(12, 1);
+                list.set(13, 1);
+                list.set(14, 1);
 
-        if (boardMaker.getCurrentBoardMode() != 1) {
-            ArrayList<Integer> list = new ArrayList<>();
-            int height = 5;
-            int width = 5;
-            int amount = height * width;
-            Integer color = 0;
-            while (amount > 0) {
-                list.add(color);
-                amount--;
+                currentTemplate = new Template(width, height, list);
+            } else if (insertionBoardMode == 2) {
+                ArrayList<Integer> list = new ArrayList<>();
+                int height = 3;
+                int width = 4;
+                int amount = height * width;
+                Integer color = 0;
+                while (amount > 0) {
+                    list.add(color);
+                    amount--;
+                }
+                list.set(4, 1);
+                list.set(5, 1);
+                list.set(1, 1);
+                list.set(2, 1);
+                list.set(7, 1);
+                list.set(9, 1);
+                list.set(10, 1);
+
+                currentTemplate = new Template(width, height, list);
+            } else if (template != null) {
+                currentTemplate = template;
             }
-            list.set(0, 1);
-            list.set(20, 1);
-            list.set(6, 1);
-            list.set(16, 1);
-            list.set(12, 1);
-            list.set(13, 1);
-            list.set(14, 1);
 
-            Template template = new Template(width, height, list);
-            currentTemplate = template;
             boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
 
-            scene.setOnKeyPressed(e -> {
-                if (e.getCode() == KeyCode.X) {
-                    boardMaker.setColorMode();
-                    boardMaker.repaintBoardOnPrevious();
-                    closeHint();
-                    scene.setOnScroll(null);
-                    scene.setOnKeyPressed(null);
-                }
-            });
             scene.setOnScroll(new EventHandler<ScrollEvent>() {
                 int whichDirection = 1;
 
@@ -255,304 +280,32 @@ public class MainScreenController {
 
                 }
             });
-
-            boardMaker.setCurrentBoardMode(1);
+            boardMaker.setCurrentBoardMode(insertionBoardMode);
         }
+    }
 
-
+    public void testFigure1() {
+        manageTemplateInsertion(null, 1);
     }
 
     public void testFigure2() {
-        hintTemplateLabel.setVisible(true);
-        boardMaker.repaintBoard();
-        boardMaker.setInsensitiveMode();
-
-        if (boardMaker.getCurrentBoardMode() != 2) {
-            ArrayList<Integer> list = new ArrayList<>();
-            int height = 3;
-            int width = 4;
-            int amount = height * width;
-            Integer color = 0;
-            while (amount > 0) {
-                list.add(color);
-                amount--;
-            }
-            list.set(4, 1);
-            list.set(5, 1);
-            list.set(1, 1);
-            list.set(2, 1);
-            list.set(7, 1);
-            list.set(9, 1);
-            list.set(10, 1);
-
-            Template template = new Template(width, height, list);
-            currentTemplate = template;
-            boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
-
-            scene.setOnKeyPressed(e -> {
-                if (e.getCode() == KeyCode.X) {
-                    boardMaker.setColorMode();
-                    boardMaker.repaintBoardOnPrevious();
-                    closeHint();
-                    scene.setOnScroll(null);
-                    scene.setOnKeyPressed(null);
-                }
-            });
-
-            scene.setOnScroll(new EventHandler<ScrollEvent>() {
-                int whichDirection = 1;
-
-                @Override
-                public void handle(ScrollEvent event) {
-                    if (whichDirection == 3) {
-                        whichDirection = 0;
-                    } else {
-                        whichDirection++;
-                    }
-                    boardMaker.setTemplateInsertionMode(currentTemplate, whichDirection, boardMaker.getCurrentBoardMode());
-
-
-                }
-            });
-
-            boardMaker.setCurrentBoardMode(2);
-        }
-
+        manageTemplateInsertion(null, 2);
     }
 
     public void testFigure3() {
-        hintTemplateLabel.setVisible(true);
-
-        boardMaker.repaintBoard();
-        boardMaker.setInsensitiveMode();
-
-        if (boardMaker.getCurrentBoardMode() != 3) {
-            ArrayList<Integer> list = new ArrayList<>();
-            int height = 4;
-            int width = 4;
-            int amount = height * width;
-            Integer color = 0;
-            while (amount > 0) {
-                color = 1 + amount % 3;
-                list.add(color);
-                amount--;
-            }
-            list.set(4, 1);
-            list.set(5, 1);
-            list.set(1, 1);
-            list.set(2, 1);
-            list.set(7, 1);
-            list.set(9, 1);
-            list.set(10, 1);
-            Template template = new Template(width, height, list);
-
-            currentTemplate = template;
-            boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
-
-            scene.setOnKeyPressed(e -> {
-                if (e.getCode() == KeyCode.X) {
-                    boardMaker.setColorMode();
-                    boardMaker.repaintBoardOnPrevious();
-                    closeHint();
-                    scene.setOnScroll(null);
-                    scene.setOnKeyPressed(null);
-                }
-            });
-
-            scene.setOnScroll(new EventHandler<ScrollEvent>() {
-                int whichDirection = 1;
-
-                @Override
-                public void handle(ScrollEvent event) {
-                    if (whichDirection == 3) {
-                        whichDirection = 0;
-                    } else {
-                        whichDirection++;
-                    }
-                    boardMaker.setTemplateInsertionMode(currentTemplate, whichDirection, boardMaker.getCurrentBoardMode());
-
-
-                }
-            });
-            boardMaker.setCurrentBoardMode(3);
-        }
-
+        manageTemplateInsertion(null, 3);
     }
 
     public void testFigure4() {
-        hintTemplateLabel.setVisible(true);
-
-        boardMaker.repaintBoard();
-        boardMaker.setInsensitiveMode();
-
-        if (boardMaker.getCurrentBoardMode() != 4) {
-            ArrayList<Integer> list = new ArrayList<>();
-            int height = 4;
-            int width = 4;
-            int amount = height * width;
-            Integer color = 0;
-            while (amount > 0) {
-                color = 1 + amount % 3;
-                list.add(color);
-                amount--;
-            }
-            list.set(4, 1);
-            list.set(5, 1);
-            list.set(1, 1);
-            list.set(2, 1);
-            list.set(7, 1);
-            list.set(9, 1);
-            list.set(10, 1);
-            Template template = new Template(width, height, list);
-
-            currentTemplate = template;
-            boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
-
-            scene.setOnKeyPressed(e -> {
-                if (e.getCode() == KeyCode.X) {
-                    boardMaker.setColorMode();
-                    boardMaker.repaintBoardOnPrevious();
-                    closeHint();
-                    scene.setOnScroll(null);
-                    scene.setOnKeyPressed(null);
-                }
-            });
-
-            scene.setOnScroll(new EventHandler<ScrollEvent>() {
-                int whichDirection = 1;
-
-                @Override
-                public void handle(ScrollEvent event) {
-                    if (whichDirection == 3) {
-                        whichDirection = 0;
-                    } else {
-                        whichDirection++;
-                    }
-                    boardMaker.setTemplateInsertionMode(currentTemplate, whichDirection, boardMaker.getCurrentBoardMode());
-
-
-                }
-            });
-            boardMaker.setCurrentBoardMode(4);
-        }
-
+        manageTemplateInsertion(null, 4);
     }
 
     public void testFigure5() {
-        hintTemplateLabel.setVisible(true);
-
-        boardMaker.repaintBoard();
-        boardMaker.setInsensitiveMode();
-
-        if (boardMaker.getCurrentBoardMode() != 5) {
-            ArrayList<Integer> list = new ArrayList<>();
-            int height = 4;
-            int width = 4;
-            int amount = height * width;
-            Integer color = 0;
-            while (amount > 0) {
-                color = 1 + amount % 3;
-                list.add(color);
-                amount--;
-            }
-            list.set(4, 1);
-            list.set(5, 1);
-            list.set(1, 1);
-            list.set(2, 1);
-            list.set(7, 1);
-            list.set(9, 1);
-            list.set(10, 1);
-            Template template = new Template(width, height, list);
-
-            currentTemplate = template;
-            boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
-
-            scene.setOnKeyPressed(e -> {
-                if (e.getCode() == KeyCode.X) {
-                    boardMaker.setColorMode();
-                    boardMaker.repaintBoardOnPrevious();
-                    closeHint();
-                    scene.setOnScroll(null);
-                    scene.setOnKeyPressed(null);
-                }
-            });
-
-            scene.setOnScroll(new EventHandler<ScrollEvent>() {
-                int whichDirection = 1;
-
-                @Override
-                public void handle(ScrollEvent event) {
-                    if (whichDirection == 3) {
-                        whichDirection = 0;
-                    } else {
-                        whichDirection++;
-                    }
-                    boardMaker.setTemplateInsertionMode(currentTemplate, whichDirection, boardMaker.getCurrentBoardMode());
-
-
-                }
-            });
-            boardMaker.setCurrentBoardMode(5);
-        }
-
+        manageTemplateInsertion(null, 5);
     }
 
     public void testFigure6() {
-        hintTemplateLabel.setVisible(true);
-        boardMaker.repaintBoard();
-        boardMaker.setInsensitiveMode();
-
-        if (boardMaker.getCurrentBoardMode() != 6) {
-            ArrayList<Integer> list = new ArrayList<>();
-            int height = 4;
-            int width = 4;
-            int amount = height * width;
-            Integer color = 0;
-            while (amount > 0) {
-                color = 1 + amount % 3;
-                list.add(color);
-                amount--;
-            }
-            list.set(4, 1);
-            list.set(5, 1);
-            list.set(1, 1);
-            list.set(2, 1);
-            list.set(7, 1);
-            list.set(9, 1);
-            list.set(10, 1);
-            Template template = new Template(width, height, list);
-
-            currentTemplate = template;
-            boardMaker.setTemplateInsertionMode(currentTemplate, 1, boardMaker.getCurrentBoardMode());
-
-            scene.setOnKeyPressed(e -> {
-                if (e.getCode() == KeyCode.X) {
-                    boardMaker.setColorMode();
-                    boardMaker.repaintBoardOnPrevious();
-                    closeHint();
-                    scene.setOnScroll(null);
-                    scene.setOnKeyPressed(null);
-                }
-            });
-
-            scene.setOnScroll(new EventHandler<ScrollEvent>() {
-                int whichDirection = 1;
-
-                @Override
-                public void handle(ScrollEvent event) {
-                    if (whichDirection == 3) {
-                        whichDirection = 0;
-                    } else {
-                        whichDirection++;
-                    }
-                    boardMaker.setTemplateInsertionMode(currentTemplate, whichDirection, boardMaker.getCurrentBoardMode());
-
-
-                }
-            });
-            boardMaker.setCurrentBoardMode(6);
-        }
-
+        manageTemplateInsertion(null, 6);
     }
 
 
@@ -587,6 +340,6 @@ public class MainScreenController {
     }
 
     public void closeHint() {
-        hintTemplateLabel.setVisible(false);
+        hint.setVisible(false);
     }
 }

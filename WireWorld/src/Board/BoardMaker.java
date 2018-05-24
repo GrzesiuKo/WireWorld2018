@@ -4,8 +4,7 @@ import GUI.Colors;
 import GUI.MainScreenController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 
@@ -91,7 +90,11 @@ public class BoardMaker {
 
                     @Override
                     public void handle(MouseEvent event) {
-                        rectangle.changeColor();
+                        if (event.getButton() == MouseButton.PRIMARY) {
+                            rectangle.changeColor();
+                        }else if(event.getButton() == MouseButton.SECONDARY){
+                            rectangle.setColorAndStatus(0);
+                        }
 
                     }
                 };
@@ -146,7 +149,11 @@ public class BoardMaker {
 
                     @Override
                     public void handle(MouseEvent event) {
-                        rectangle.changeColor();
+                        if (event.getButton() == MouseButton.PRIMARY) {
+                            rectangle.changeColor();
+                        }else if(event.getButton() == MouseButton.SECONDARY){
+                            rectangle.setColorAndStatus(0);
+                        }
                     }
                 };
                 rectangle.setOnMouseDragEntered(handler);
@@ -204,6 +211,7 @@ public class BoardMaker {
             lastIndex--;
         }
     }
+
     public void repaintBoard() {
         int lastIndex = width * height - 1;
         while (lastIndex >= 0) {
@@ -232,6 +240,7 @@ public class BoardMaker {
             lastIndex--;
         }
     }
+
     public void setBoardColor(int x) {
         currentBoardMode = 0;
         int lastIndex = width * height - 1;
@@ -263,7 +272,6 @@ public class BoardMaker {
 
     public void setTemplateInsertionMode(Template template, int direction, int modeID) {
         currentBoardMode = modeID;
-        //this.repaintBoard();
         int lastIndex = width * height - 1;
         int end = 0;
         while (lastIndex >= 0) {
@@ -276,11 +284,16 @@ public class BoardMaker {
 
                 @Override
                 public void handle(MouseEvent event) {
-                    template.addToBoard(boardMaker, board.get(finalLastIndex), direction);
-                    setColorMode();
-                    mainScreenController.closeHint();
-                    mainScreenController.getScene().setOnScroll(null);
-                    mainScreenController.getScene().setOnKeyPressed(null);
+                    if(event.getButton()==MouseButton.PRIMARY) {
+                        template.addToBoard(boardMaker, board.get(finalLastIndex), direction);
+                        setColorMode();
+                        mainScreenController.closeHint();
+                        mainScreenController.getScene().setOnScroll(null);
+                    } else if (event.getButton() == MouseButton.SECONDARY){
+                        setColorMode();
+                        boardMaker.repaintBoardOnPrevious();
+                        mainScreenController.closeHint();
+                    }
                 }
 
             };
@@ -303,9 +316,10 @@ public class BoardMaker {
 
             EventHandler<ScrollEvent> handlerScroll = new EventHandler<ScrollEvent>() {
                 int whichDirection = direction;
+
                 @Override
                 public void handle(ScrollEvent event) {
-                    if(boardMaker.getCurrentBoardMode() != 0){
+                    if (boardMaker.getCurrentBoardMode() != 0) {
                         if (whichDirection == 3) {
                             whichDirection = 0;
                         } else {
@@ -316,7 +330,6 @@ public class BoardMaker {
                     }
                 }
             };
-
             board.get(lastIndex).setOnMouseClicked(handler1);
             board.get(lastIndex).setOnMouseEntered(handler2);
             board.get(lastIndex).setOnMouseExited(handler3);
@@ -335,9 +348,16 @@ public class BoardMaker {
             EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    board.get(finalLastIndex).changeColor();
+                    if (event.getButton() == MouseButton.PRIMARY) {
+                        board.get(finalLastIndex).changeColor();
+                    }else if(event.getButton() == MouseButton.SECONDARY){
+                        board.get(finalLastIndex).setColorAndStatus(0);
+                    }
                 }
             };
+
+            mainScreenController.getScene().setOnScroll(null);
+            mainScreenController.closeHint();
             board.get(lastIndex).setOnMouseClicked(handler);
             board.get(lastIndex).setOnMouseDragEntered(handler);
             board.get(lastIndex).setOnMouseExited(null);
@@ -345,6 +365,7 @@ public class BoardMaker {
             lastIndex--;
         }
     }
+
     public void setInsensitiveMode() {
         currentBoardMode = -1;
         int lastIndex = width * height - 1;
