@@ -22,7 +22,7 @@
          <children>
             <JFXButton fx:id="go" buttonType="RAISED" contentDisplay="CENTER" onAction="#goAnimation" style="-fx-background-color: #8BC34A;" text="GO" />
             <JFXButton fx:id="pause" onAction="#pauseAnimation" style="-fx-background-color: #FFCA28;" text="Pause" />
-            <JFXButton fx:id="save" onAction="#saveToFile" style="-fx-background-color: #ff0000;" text="save" />
+            <JFXButton fx:id="save" onAction="#saveToFile" style="-fx-background-color: #ff0000;" text="Save" />
             <JFXButton fx:id="clear" buttonType="RAISED" contentDisplay="CENTER" onAction="#clear" style="-fx-background-color: #03A9F4;" text="Clear" />
          </children>
       </VBox>
