@@ -99,11 +99,11 @@ public class MainScreenController {
         colors = new Colors();
         boardMaker = new BoardMaker();
         boardMaker.setMainScreenController(this);
-        boardMaker.makeBoard(colors, board, 100, 100, 20, 600, 600);
+        boardMaker.makeBoard(colors, board, 100, 100, 20, 800, 600);
 
 
         adapter = new BoardAdapter(boardMaker);
-        genHandler = new GeneratorHandler(500, adapter);
+        genHandler = new GeneratorHandler(250, adapter);
         //adapter.setCellStateAt(29,0,3);
         //adapter.setCellStateAt(29,29,3);
         genHandler.start();
@@ -209,57 +209,89 @@ public class MainScreenController {
         boardMaker.setInsensitiveMode();
         if (boardMaker.getCurrentBoardMode() != insertionBoardMode) {
 
-            if (template == null && insertionBoardMode != 1 && insertionBoardMode != 2) {
-                ArrayList<Integer> list = new ArrayList<>();
-                int height = 4;
-                int width = 4;
-                int amount = height * width;
-                Integer color = 0;
-                while (amount > 0) {
-                    color = 1 + amount % 3;
-                    list.add(color);
-                    amount--;
-                }
-                currentTemplate = new Template(width, height, list);
-            } else if (insertionBoardMode == 1) {
-                ArrayList<Integer> list = new ArrayList<>();
-                int height = 5;
-                int width = 5;
-                int amount = height * width;
-                Integer color = 0;
-                while (amount > 0) {
-                    list.add(color);
-                    amount--;
-                }
-                list.set(0, 1);
-                list.set(20, 1);
-                list.set(6, 1);
-                list.set(16, 1);
-                list.set(12, 1);
-                list.set(13, 1);
-                list.set(14, 1);
+            if (template == null) {
+                if (insertionBoardMode == 1) {
+                    ArrayList<Integer> list = new ArrayList<>();
+                    int height = 5;
+                    int width = 5;
+                    int amount = height * width;
+                    Integer color = 0;
+                    while (amount > 0) {
+                        list.add(color);
+                        amount--;
+                    }
+                    list.set(0, 1);
+                    list.set(20, 1);
+                    list.set(6, 1);
+                    list.set(16, 1);
+                    list.set(12, 1);
+                    list.set(13, 1);
+                    list.set(14, 1);
 
-                currentTemplate = new Template(width, height, list);
-            } else if (insertionBoardMode == 2) {
-                ArrayList<Integer> list = new ArrayList<>();
-                int height = 3;
-                int width = 4;
-                int amount = height * width;
-                Integer color = 0;
-                while (amount > 0) {
-                    list.add(color);
-                    amount--;
-                }
-                list.set(4, 1);
-                list.set(5, 1);
-                list.set(1, 1);
-                list.set(2, 1);
-                list.set(7, 1);
-                list.set(9, 1);
-                list.set(10, 1);
+                    currentTemplate = new Template(width, height, list);
+                } else if (insertionBoardMode == 2) {
+                    ArrayList<Integer> list = new ArrayList<>();
+                    int height = 3;
+                    int width = 4;
+                    int amount = height * width;
+                    Integer color = 0;
+                    while (amount > 0) {
+                        list.add(color);
+                        amount--;
+                    }
+                    list.set(4, 1);
+                    list.set(5, 1);
+                    list.set(1, 1);
+                    list.set(2, 1);
+                    list.set(7, 1);
+                    list.set(9, 1);
+                    list.set(10, 1);
 
-                currentTemplate = new Template(width, height, list);
+                    currentTemplate = new Template(width, height, list);
+                } else if (insertionBoardMode == 3) {
+                    ArrayList<Integer> list = new ArrayList<>();
+                    int height = 5;
+                    int width = 9;
+                    int amount = height * width;
+                    Integer color = 0;
+                    while (amount > 0) {
+                        list.add(color);
+                        amount--;
+                    }
+                    list.set(0, 1);
+                    list.set(1, 1);
+                    list.set(2, 1);
+                    list.set(3, 1);
+                    list.set(13, 1);
+                    list.set(21, 1);
+                    list.set(22, 1);
+                    list.set(23, 1);
+                    list.set(24, 1);
+                    list.set(25, 1);
+                    list.set(26, 1);
+                    list.set(31, 1);
+                    list.set(36, 1);
+                    list.set(37, 1);
+                    list.set(38, 1);
+                    list.set(39, 1);
+
+                    currentTemplate = new Template(width, height, list);
+
+                } else {
+                    ArrayList<Integer> list = new ArrayList<>();
+                    int height = 4;
+                    int width = 4;
+                    int amount = height * width;
+                    Integer color = 0;
+                    while (amount > 0) {
+                        color = 1 + amount % 3;
+                        list.add(color);
+                        amount--;
+                    }
+                    currentTemplate = new Template(width, height, list);
+                }
             } else if (template != null) {
+
                 currentTemplate = template;
             }
 
@@ -281,7 +313,9 @@ public class MainScreenController {
                 }
             });
             boardMaker.setCurrentBoardMode(insertionBoardMode);
+
         }
+
     }
 
     public void testFigure1() {
