@@ -6,9 +6,11 @@ public class CellularAutomaton {
     private Rules rules;
     private Neighbours neighbours;
 
-    private int hight = 0;
-    private int width = 0;
+    private int hight;
+    private int width;
     private int[][] tmpMatrix;
+
+    private boolean borders = false;
 
     public CellularAutomaton(BoardAdapter adapter) {
         this.adapter = adapter;
@@ -22,10 +24,14 @@ public class CellularAutomaton {
     public void generateNextFrame() {
         for (int y = 0; y < hight; y++) {
             for (int x = 0; x < width; x++) {
-                tmpMatrix[x][y] = rules.getNewState(adapter.getCellStateAt(x, y), neighbours.getHeadNeighboursNumber(x, y));
+                tmpMatrix[x][y] = rules.getNewState(adapter.getCellStateAt(x, y), neighbours.getHeadNeighboursNumber(x, y, borders));
             }
         }
         updateBoard(tmpMatrix);
+    }
+
+    public void setBorders( boolean mode ){
+        borders = mode;
     }
 
     private void updateBoard(int[][] tmp) {
