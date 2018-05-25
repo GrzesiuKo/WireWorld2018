@@ -5,6 +5,7 @@ import Board.Template;
 import Board.Templates;
 import Generator.BoardAdapter;
 import Generator.GeneratorHandler;
+import IO.IO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -19,10 +20,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -37,6 +39,7 @@ public class MainScreenController {
 
     private BoardAdapter adapter;
     private GeneratorHandler genHandler;
+    private IO io;
 
     @FXML
     Label stateLabel;
@@ -106,9 +109,9 @@ public class MainScreenController {
         genHandler = new GeneratorHandler(250, adapter);
         //adapter.setCellStateAt(29,0,3);
         //adapter.setCellStateAt(29,29,3);
-        genHandler.start();
-        //genHandler.playGenerator();
 
+        genHandler.start();
+        io = new IO();
 
     }
 
@@ -141,7 +144,23 @@ public class MainScreenController {
     }
 
     public void loadFile() {
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "gif", "jpeg");
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(filter);
+        if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            if( file != null)
+                io.readBoardConfiguration( file, adapter );
+        }
+    }
 
+    public void saveToFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            if( file != null)
+                io.saveBoard( file, adapter );
+        }
     }
 
     public void goAnimation() {

@@ -3,19 +3,19 @@ package Generator;
 public class Rules {
     public int getNewState( int state, int headsNumber ){
         switch( state ){
-            case 0:
-                return 0;
-            case 1:
+            case StatusIndicators.EMPTY:
+                return StatusIndicators.EMPTY;
+            case StatusIndicators.CONDUCTOR:
                 if ( headsNumber == 1 || headsNumber == 2)
-                    return 3;
+                    return StatusIndicators.HEAD;
                 else
-                    return 1;
-            case 2:
-                return 1;
-            case 3:
-                return 2;
+                    return StatusIndicators.CONDUCTOR;
+            case StatusIndicators.TAIL:
+                return StatusIndicators.CONDUCTOR;
+            case StatusIndicators.HEAD:
+                return StatusIndicators.TAIL;
             default:
-                return 0;
+                return StatusIndicators.EMPTY;
         }
     }
 }
