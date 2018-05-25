@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WireWorld/GUI/MainScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WireWorld/GUI/MainScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Generator/CellularAutomaton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Generator/CellularAutomaton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Generator/GeneratorHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Generator/GeneratorHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Generator/Neighbours.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Generator/Neighbours.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Generator/Rules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Generator/Rules.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IO/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IO/IO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxml/MainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/MainScreen.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -72,26 +65,7 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GUI.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/GUI/GUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CellularAutomaton.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Generator/CellularAutomaton.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="37" column="41" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -104,6 +78,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>key</find>
+      <find>halt</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -146,8 +121,9 @@
         <option value="$PROJECT_DIR$/src/Generator/GeneratorHandler.java" />
         <option value="$PROJECT_DIR$/src/Generator/Neighbours.java" />
         <option value="$PROJECT_DIR$/src/Generator/CellularAutomaton.java" />
-        <option value="$PROJECT_DIR$/src/IO/IO.java" />
         <option value="$PROJECT_DIR$/src/GUI/MainScreenController.java" />
+        <option value="$PROJECT_DIR$/src/fxml/MainScreen.fxml" />
+        <option value="$PROJECT_DIR$/src/IO/IO.java" />
       </list>
     </option>
   </component>
@@ -167,6 +143,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -208,8 +186,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -477,7 +453,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/IO/IO.java</url>
-          <line>132</line>
+          <line>134</line>
           <properties />
           <option name="timeStamp" value="52" />
         </line-breakpoint>
@@ -490,13 +466,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Board/Templates.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Board/Template.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -777,9 +746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -810,54 +776,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Generator/CellularAutomaton.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="37" column="41" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IO/IO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="80" selection-start-line="80" selection-end-line="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#loadBoardToRGBAMatrix#0;class#IO#0" />
-            <element signature="method#loadFileToIntMatrix#0;class#IO#0" />
-            <element signature="method#pickAColorIntToRGBA#0;class#IO#0" />
-            <element signature="method#pickAColorToInt#0;class#IO#0" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/MainScreenController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1921">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        <state relative-caret-position="-1207">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
           <folding>
-            <element signature="e#7850#7851#0" expanded="true" />
-            <element signature="e#7898#7899#0" expanded="true" />
-            <element signature="e#7931#7932#0" expanded="true" />
-            <element signature="e#7979#7980#0" expanded="true" />
-            <element signature="e#8012#8013#0" expanded="true" />
-            <element signature="e#8060#8061#0" expanded="true" />
-            <element signature="e#8093#8094#0" expanded="true" />
-            <element signature="e#8141#8142#0" expanded="true" />
-            <element signature="e#8174#8175#0" expanded="true" />
-            <element signature="e#8222#8223#0" expanded="true" />
-            <element signature="e#8255#8256#0" expanded="true" />
-            <element signature="e#8303#8304#0" expanded="true" />
-            <element signature="e#9123#9124#0" expanded="true" />
-            <element signature="e#9161#9162#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUI.java">
+    <entry file="file://$PROJECT_DIR$/src/IO/IO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="195">
+          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#loadBoardToRGBAMatrix#0;class#IO#0" />
+            <element signature="method#pickAColorIntToRGBA#0;class#IO#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fxml/MainScreen.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-199">
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Generator/CellularAutomaton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="37" column="41" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
         </state>
       </provider>
     </entry>

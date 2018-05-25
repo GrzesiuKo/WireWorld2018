@@ -50,6 +50,8 @@ public class IO {
 
     public int[][] loadFileToIntMatrix(File file){
         try {
+            if( !file.exists())
+                return null;
             BufferedImage img = ImageIO.read(file);
             if( img == null) {
                 System.out.println("Podano zly plik");
