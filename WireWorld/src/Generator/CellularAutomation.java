@@ -1,6 +1,6 @@
 package Generator;
 
-public class CellularAutomaton {
+public class CellularAutomation {
 
     private BoardAdapter adapter;
     private Rules rules;
@@ -12,7 +12,7 @@ public class CellularAutomaton {
 
     private boolean borders = false;
 
-    public CellularAutomaton(BoardAdapter adapter) {
+    public CellularAutomation(BoardAdapter adapter) {
         this.adapter = adapter;
         this.hight = adapter.getHeight();
         this.width = adapter.getWidth();

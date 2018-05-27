@@ -1,7 +1,7 @@
 package Generator;
 
 public class GeneratorHandler extends Thread {
-    CellularAutomaton generator;
+    CellularAutomation generator;
 
     int delay;
     static boolean play = false;
@@ -9,7 +9,7 @@ public class GeneratorHandler extends Thread {
 
     public GeneratorHandler(int delay, BoardAdapter adapter) {
         this.delay = delay;
-        generator = new CellularAutomaton(adapter);
+        generator = new CellularAutomation(adapter);
     }
 
     public void run() {
