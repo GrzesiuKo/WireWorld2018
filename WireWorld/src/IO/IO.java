@@ -15,13 +15,16 @@ public class IO {
 
     public Template readTemplate(File file){
         ArrayList<Integer> list = new ArrayList<Integer>();
+
         int[][] matrix = fileToIntMatrix(file);
         if( matrix == null)
-            return new Template(0, 0, list);
+            return null;
 
         list = intMatrixToArrayList( matrix, list);
+        Template template = new Template(matrix.length, matrix[0].length, list);
+        template.setName(file.getName());
 
-        return new Template(matrix.length, matrix[0].length, list);
+        return template;
     }
 
     private ArrayList<Integer> intMatrixToArrayList( int[][] matrix, ArrayList<Integer> list ){
