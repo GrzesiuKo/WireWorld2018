@@ -96,7 +96,7 @@ public class Template {
                     }
                     if (exception) {
                         currentCell = boardMaker.getBoard().get(Integer.valueOf(currentCell.getId()) + (width-1) * boardMaker.getWidth() + 1);
-                    }else {
+                    }else if (Integer.valueOf(currentCell.getId()) + width * boardMaker.getWidth() + 1 < boardMaker.getWidth()*boardMaker.getHeight()){
                         currentCell = boardMaker.getBoard().get(Integer.valueOf(currentCell.getId()) + width * boardMaker.getWidth() + 1);
                     }
                     iy = cell.getYCoordinate();

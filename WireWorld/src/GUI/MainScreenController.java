@@ -157,18 +157,16 @@ public class MainScreenController {
         fileChooser.setFileFilter(filter);
         if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            if( file != null)
-                io.readBoardConfiguration( file, adapter );
+            if (file != null)
+                io.readBoardConfiguration(file, adapter);
         }
     }
 
 
-    public void loadTemplate(){
-
+    public void loadTemplate() {
 
 
     }
-
 
 
     public void saveToFile() {
@@ -178,8 +176,8 @@ public class MainScreenController {
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            if( file != null)
-                io.saveBoard( file, adapter );
+            if (file != null)
+                io.saveBoard(file, adapter);
         }
     }
 
@@ -233,6 +231,7 @@ public class MainScreenController {
 
 
     }
+
 
     public void manageTemplateInsertion(Template template, int insertionBoardMode) {
         hint.setVisible(true);
@@ -362,15 +361,33 @@ public class MainScreenController {
     }
 
     public void testFigure4() {
-        manageTemplateInsertion(null, 4);
+        if (templates.getKeyList().size() > 0) {
+            String key = templates.getKeyList().get(0);
+            manageTemplateInsertion(templates.getTemplate(key), 4);
+        }else{
+            manageTemplateInsertion(null, 4);
+
+        }
     }
 
     public void testFigure5() {
-        manageTemplateInsertion(null, 5);
+        if (templates.getKeyList().size() > 1) {
+            String key = templates.getKeyList().get(1);
+            manageTemplateInsertion(templates.getTemplate(key), 5);
+        }else{
+            manageTemplateInsertion(null, 5);
+
+        }
     }
 
     public void testFigure6() {
-        manageTemplateInsertion(null, 6);
+        if (templates.getKeyList().size() > 2) {
+            String key = templates.getKeyList().get(2);
+            manageTemplateInsertion(templates.getTemplate(key), 6);
+        }else{
+            manageTemplateInsertion(null, 6);
+
+        }
     }
 
 
