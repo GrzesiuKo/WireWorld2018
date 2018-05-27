@@ -106,14 +106,12 @@ public class MainScreenController {
         boardMaker.setMainScreenController(this);
         boardMaker.makeBoard(colors, board, 100, 100, 20, 800, 600);
 
-
         adapter = new BoardAdapter(boardMaker);
         genHandler = new GeneratorHandler(300, adapter);
-        //adapter.setCellStateAt(29,0,3);
-        //adapter.setCellStateAt(29,29,3);
 
         genHandler.start();
         io = new IO();
+        templates = new Templates();
 
     }
 
@@ -162,14 +160,20 @@ public class MainScreenController {
         }
     }
 
-
     public void loadTemplate(){
+        genHandler.pauseGenerator();
+        isAnimationRunningSignal(false);
 
-
-
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            if( file != null){
+                Board.Template templ = io.readTemplate( file );
+                if( templ != null)
+                    templates.addTemplate( templ.getName(), templ);
+            }
+        }
     }
-
-
 
     public void saveToFile() {
         genHandler.pauseGenerator();
