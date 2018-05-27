@@ -165,6 +165,9 @@ public class MainScreenController {
         isAnimationRunningSignal(false);
         Template template = null;
 
+        if(templates.getKeyList().size()==3)
+            return;
+
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
@@ -178,8 +181,12 @@ public class MainScreenController {
         if (figure4.getText().compareTo("-")==0){
             figure4.setText(template.getName());
             return;
-        }else {
-            System.out.println("elo");
+        }else if (figure5.getText().compareTo("-")==0){
+            figure5.setText(template.getName());
+            return;
+        }else if (figure6.getText().compareTo("-")==0){
+            figure6.setText(template.getName());
+            return;
         }
 
     }
