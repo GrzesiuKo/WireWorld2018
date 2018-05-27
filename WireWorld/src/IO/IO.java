@@ -23,7 +23,6 @@ public class IO {
         list = intMatrixToArrayList( matrix, list);
         Template template = new Template(matrix.length, matrix[0].length, list);
         template.setName(file.getName());
-        System.out.println("temp name " + file.getName());
 
         return template;
     }
