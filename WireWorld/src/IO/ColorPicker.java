@@ -60,7 +60,7 @@ public class ColorPicker {
                 && (px[1] <= 40)
                 && (px[2] >= 0)
                 && (px[2] <= 40)
-                && (px[3] >= 220)
+                && (px[3] >= 0)
                 && (px[3] <= 255))
             return 3;
 
@@ -70,7 +70,7 @@ public class ColorPicker {
                 && (px[1] <= 255)
                 && (px[2] >= 0)
                 && (px[2] <= 40)
-                && (px[3] >= 220)
+                && (px[3] >= 0)
                 && (px[3] <= 255))
             return 2;
 
