@@ -39,9 +39,9 @@
             <Button fx:id="figure1" mnemonicParsing="false" onAction="#testFigure1" prefHeight="25.0" prefWidth="64.0" text="X-Wing" />
             <Button fx:id="figure2" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#testFigure2" prefHeight="25.0" prefWidth="64.0" text="Diode" GridPane.columnIndex="1" />
             <Button fx:id="figure3" mnemonicParsing="false" onAction="#testFigure3" prefHeight="25.0" prefWidth="64.0" text="Y-Wing" GridPane.rowIndex="1" />
-            <Button fx:id="figure4" mnemonicParsing="false" onAction="#testFigure4" prefHeight="25.0" prefWidth="64.0" text="Figure 4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="figure5" mnemonicParsing="false" onAction="#testFigure5" prefHeight="25.0" prefWidth="64.0" text="Figure 5" GridPane.rowIndex="2" />
-            <Button fx:id="figure6" mnemonicParsing="false" onAction="#testFigure6" prefHeight="25.0" prefWidth="64.0" text="Figure 6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="figure4" mnemonicParsing="false" onAction="#testFigure4" prefHeight="25.0" prefWidth="64.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="figure5" mnemonicParsing="false" onAction="#testFigure5" prefHeight="25.0" prefWidth="64.0" text="-" GridPane.rowIndex="2" />
+            <Button fx:id="figure6" mnemonicParsing="false" onAction="#testFigure6" prefHeight="25.0" prefWidth="64.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Circle fx:id="stateCircle" fill="#f00202" layoutX="850.0" layoutY="25.0" radius="11.0" stroke="#f5f2f2" strokeType="INSIDE" />

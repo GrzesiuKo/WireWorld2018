@@ -163,15 +163,23 @@ public class MainScreenController {
     public void loadTemplate(){
         genHandler.pauseGenerator();
         isAnimationRunningSignal(false);
+        Template template = null;
 
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             if( file != null){
                 Board.Template templ = io.readTemplate( file );
+                template = templ ;
                 if( templ != null)
                     templates.addTemplate( templ.getName(), templ);
             }
+        }
+        if (figure4.getText().compareTo("-")==0){
+            figure4.setText(template.getName());
+            return;
+        }else {
+            System.out.println("elo");
         }
 
     }
