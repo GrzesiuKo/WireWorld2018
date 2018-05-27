@@ -56,6 +56,8 @@ public class MainScreenController {
 
     @FXML
     Pane board;
+    @FXML
+    JFXButton loadTemplate;
 
     @FXML
     JFXButton load;
@@ -153,6 +155,15 @@ public class MainScreenController {
                 io.readBoardConfiguration( file, adapter );
         }
     }
+
+
+    public void loadTemplate(){
+
+
+
+    }
+
+
 
     public void saveToFile() {
         JFileChooser fileChooser = new JFileChooser();

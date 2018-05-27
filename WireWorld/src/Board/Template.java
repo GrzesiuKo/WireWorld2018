@@ -6,6 +6,7 @@ public class Template {
     private ArrayList<Integer> template;
     private int width;
     private int height;
+    private String name;
 
     public Template() {
         template = null;
@@ -26,6 +27,14 @@ public class Template {
     public void setTemplate(ArrayList<Integer> template) {
 
         this.template = template;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getWidth() {

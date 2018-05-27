@@ -15,7 +15,7 @@
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MainScreenController">
 	<children>
       <Pane fx:id="board" layoutX="-3.0" maxHeight="600.0" maxWidth="975.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="806.0" />
-      <JFXButton fx:id="load" buttonType="RAISED" contentDisplay="CENTER" layoutX="864.0" layoutY="77.0" onAction="#loadFile" style="-fx-background-color: #D84315;" text="Load" />
+      <JFXButton fx:id="load" buttonType="RAISED" contentDisplay="CENTER" layoutX="847.0" layoutY="53.0" onAction="#loadFile" style="-fx-background-color: #D84315;" text="Load Board" />
       <VBox alignment="CENTER" layoutX="858.0" layoutY="145.0" prefHeight="167.0" prefWidth="55.0" spacing="40.0">
          <children>
             <JFXButton fx:id="go" buttonType="RAISED" contentDisplay="CENTER" onAction="#goAnimation" style="-fx-background-color: #8BC34A;" text="GO" />
@@ -47,5 +47,6 @@
       <Circle fx:id="stateCircle" fill="#f00202" layoutX="850.0" layoutY="25.0" radius="11.0" stroke="#f5f2f2" strokeType="INSIDE" />
       <Label fx:id="stateLabel" layoutX="873.0" layoutY="14.0" prefHeight="22.0" prefWidth="59.0" text="Stopped" textOverrun="WORD_ELLIPSIS" />
       <JFXTextArea fx:id="hint" editable="false" layoutX="803.0" layoutY="540.0" prefHeight="42.0" prefWidth="200.0" text="Hint: Right-Click to abort template :)&#10;Scroll to turn." visible="false" />
+      <JFXButton fx:id="loadTemplate" buttonType="RAISED" contentDisplay="CENTER" layoutX="838.0" layoutY="92.0" onAction="#loadTemplate" style="-fx-background-color: #D84315;" text="Load Template" />
 	</children>
 </AnchorPane>
