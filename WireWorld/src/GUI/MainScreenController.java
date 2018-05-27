@@ -47,6 +47,8 @@ public class MainScreenController {
     @FXML
     JFXTextArea hint;
 
+    @FXML
+    JFXTextArea hint2;
 
     @FXML
     Circle stateCircle;
@@ -68,8 +70,6 @@ public class MainScreenController {
     @FXML
     JFXButton pause;
 
-    @FXML
-    JFXButton halt;
 
     @FXML
     JFXButton clear;
@@ -178,17 +178,18 @@ public class MainScreenController {
                     templates.addTemplate( templ.getName(), templ);
             }
         }
-        if (figure4.getText().compareTo("-")==0){
-            figure4.setText(template.getName());
-            return;
-        }else if (figure5.getText().compareTo("-")==0){
-            figure5.setText(template.getName());
-            return;
-        }else if (figure6.getText().compareTo("-")==0){
-            figure6.setText(template.getName());
-            return;
+        if (template!=null) {
+            if (figure4.getText().compareTo("-") == 0) {
+                figure4.setText(template.getName());
+                return;
+            } else if (figure5.getText().compareTo("-") == 0) {
+                figure5.setText(template.getName());
+                return;
+            } else if (figure6.getText().compareTo("-") == 0) {
+                figure6.setText(template.getName());
+                return;
+            }
         }
-
     }
 
     public void saveToFile() {
@@ -257,6 +258,11 @@ public class MainScreenController {
 
     public void manageTemplateInsertion(Template template, int insertionBoardMode) {
         hint.setVisible(true);
+        if(template != null && (template.getHeight()>= boardMaker.getHeight()-(boardMaker.getHeight()/3) ||
+                template.getWidth()>= boardMaker.getWidth()-(boardMaker.getWidth()/3))){
+            hint.setVisible(false);
+            hint2.setVisible(true);
+        }
         boardMaker.repaintBoard();
         boardMaker.setInsensitiveMode();
         if (boardMaker.getCurrentBoardMode() != insertionBoardMode) {
@@ -416,7 +422,6 @@ public class MainScreenController {
         load.setDisable(x);
         go.setDisable(x);
         pause.setDisable(x);
-        halt.setDisable(x);
         clear.setDisable(x);
         color.setDisable(x);
 
@@ -444,5 +449,6 @@ public class MainScreenController {
 
     public void closeHint() {
         hint.setVisible(false);
+        hint2.setVisible(false);
     }
 }
