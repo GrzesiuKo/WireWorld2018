@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TestBoard.Controllers.Test2Controller">
    <children>
-      <Button fx:id="button" layoutX="609.0" layoutY="275.0" mnemonicParsing="false" onAction="#board" text="Board" />
       <Pane fx:id="pane" layoutY="7.0" maxHeight="600.0" maxWidth="600.0" prefHeight="600.0" prefWidth="600.0" />
+      <Button fx:id="button" layoutX="641.0" layoutY="291.0" mnemonicParsing="false" onAction="#board" text="Button" />
    </children>
 </AnchorPane>

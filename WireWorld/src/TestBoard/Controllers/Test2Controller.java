@@ -16,18 +16,6 @@ public class Test2Controller {
     @FXML
     Button button;
 
-   /* doesn't work @FXML
-    public void initialize() {
-
-        Colors colors = new Colors();
-
-        BoardMaker boardMaker = new BoardMaker();
-
-        boardMaker.makeBoard(colors, pane, 30, 30, 20);
-
-        System.out.println("Elo");
-
-    }*/
 
     public void board(){
 

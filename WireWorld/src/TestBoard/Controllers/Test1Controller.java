@@ -13,25 +13,17 @@ public class Test1Controller {
     @FXML
     Pane pane;
 
-    @FXML
-    Button button;
 
     @FXML
-    public void initialize() {
-        Colors colors = new Colors();
-
-        BoardMaker boardMaker = new BoardMaker();
-
-        boardMaker.makeBoard(colors, pane, 30, 30, 20);
-    }
-
-    public void board(){
+    public void initialize(){
 
         Colors colors = new Colors();
 
         BoardMaker boardMaker = new BoardMaker();
 
-        boardMaker.makeBoard(colors, pane, 30, 30, 20);
+        boardMaker.makeBoard(colors, pane, 30, 30, 20, 600, 600);
+
+
 
     }
 

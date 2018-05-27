@@ -22,16 +22,6 @@ public class Cell extends Rectangle {
         this.yMatrixCoordinate = yMatrixCoordinate;
     }
 
-
-    public Cell(int x, int y, int width, int height, int xMatrixCoordinate, int yMatrixCoordinate) {
-        this.setX(x);
-        this.setY(y);
-        this.setWidth(width);
-        this.setHeight(height);
-        this.xMatrixCoordinate = xMatrixCoordinate;
-        this.yMatrixCoordinate = yMatrixCoordinate;
-    }
-
     public int getPrevColor() {
         return prevColor;
     }

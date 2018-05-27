@@ -82,7 +82,7 @@ public class BoardMaker {
         this.width = xColumns;
         this.height = yRows;
         while (y < yRows && y * rectSideLength < pane.getHeight()) {
-            Cell rectangle = new Cell(x * rectSideLength, y * rectSideLength, rectSideLength, rectSideLength, x, y);
+            Cell rectangle = new Cell(colors,x * rectSideLength, y * rectSideLength, rectSideLength, rectSideLength, x, y);
 
             if (x < xColumns && x * rectSideLength < pane.getWidth()) {
 
