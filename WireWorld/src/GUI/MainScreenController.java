@@ -173,7 +173,7 @@ public class MainScreenController {
                     templates.addTemplate( templ.getName(), templ);
             }
         }
-        
+
     }
 
     public void saveToFile() {
@@ -315,7 +315,7 @@ public class MainScreenController {
                     currentTemplate = new Template(width, height, list);
 
                 } else {
-                    ArrayList<Integer> list = new ArrayList<>();
+                   ArrayList<Integer> list = new ArrayList<>();
                     int height = 4;
                     int width = 4;
                     int amount = height * width;
@@ -328,7 +328,6 @@ public class MainScreenController {
                     currentTemplate = new Template(width, height, list);
                 }
             } else if (template != null) {
-
                 currentTemplate = template;
             }
 

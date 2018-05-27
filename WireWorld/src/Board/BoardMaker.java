@@ -272,6 +272,7 @@ public class BoardMaker {
 
     public void setTemplateInsertionMode(Template template, int direction, int modeID) {
         currentBoardMode = modeID;
+
         int lastIndex = width * height - 1;
         int end = 0;
         while (lastIndex >= 0) {

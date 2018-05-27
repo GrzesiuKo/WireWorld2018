@@ -10,6 +10,7 @@ public class Templates {
 
     public Templates() {
         templates = new HashMap<String, Template>();
+        keyList = new ArrayList<String>();
     }
 
     public Template getTemplate(String key) {
