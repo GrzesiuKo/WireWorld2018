@@ -162,6 +162,7 @@ public class MainScreenController {
     public void loadTemplate(){
         genHandler.pauseGenerator();
         isAnimationRunningSignal(false);
+        disableTemplateButtons(false);
         Template template = null;
 
         if(templates.getKeyList().size()==3)
