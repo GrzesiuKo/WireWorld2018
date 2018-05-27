@@ -21,7 +21,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.*;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
@@ -150,7 +149,7 @@ public class MainScreenController {
         boardMaker.setColorMode();
         disableTemplateButtons(false);
 
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "gif", "jpeg");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "*.jpg", "*.png", "*.gif", "*.jpeg");
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(filter);
         if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
@@ -168,16 +167,19 @@ public class MainScreenController {
         if(templates.getKeyList().size()==3)
             return;
 
-        JFileChooser fileChooser = new JFileChooser();
-        if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            if( file != null){
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", "*.gif", "*.jpeg");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(stage);
+
+
+        if( file != null){
                 Board.Template templ = io.readTemplate( file );
                 template = templ ;
                 if( templ != null)
                     templates.addTemplate( templ.getName(), templ);
             }
-        }
+
         if (template!=null) {
             if (figure4.getText().compareTo("-") == 0) {
                 figure4.setText(template.getName());
