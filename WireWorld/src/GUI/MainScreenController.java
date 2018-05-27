@@ -108,7 +108,7 @@ public class MainScreenController {
 
 
         adapter = new BoardAdapter(boardMaker);
-        genHandler = new GeneratorHandler(250, adapter);
+        genHandler = new GeneratorHandler(300, adapter);
         //adapter.setCellStateAt(29,0,3);
         //adapter.setCellStateAt(29,29,3);
 
@@ -146,6 +146,12 @@ public class MainScreenController {
     }
 
     public void loadFile() {
+        genHandler.pauseGenerator();
+        isAnimationRunningSignal(false);
+        boardMaker.setBoardColor(0);
+        boardMaker.setColorMode();
+        disableTemplateButtons(false);
+
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "gif", "jpeg");
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(filter);
@@ -166,6 +172,9 @@ public class MainScreenController {
 
 
     public void saveToFile() {
+        genHandler.pauseGenerator();
+        isAnimationRunningSignal(false);
+
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
@@ -186,14 +195,6 @@ public class MainScreenController {
         disableTemplateButtons(false);
         genHandler.pauseGenerator();
         isAnimationRunningSignal(false);
-    }
-
-    public void haltAnimation() {
-        disableTemplateButtons(false);
-        boardMaker.setColorMode();
-        genHandler.pauseGenerator();
-        isAnimationRunningSignal(false);
-
     }
 
     public void clear() {
