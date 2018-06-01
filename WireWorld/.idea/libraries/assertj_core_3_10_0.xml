@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="assertj-core-3.10.0">
     <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../jfoenix-9.0.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/../assertj-core-3.10.0.jar!/" />
     </CLASSES>
     <JAVADOC />
