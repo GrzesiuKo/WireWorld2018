@@ -54,7 +54,13 @@ Daniel Sporysz}
 
 
 \section{Opis działania}
-XXXXXXXXXXXXXXXXXXXXX
+Program jest implementacją automatu komórkowego opartego na regułach ,,gry w życie'' Johna Conwaya w wariancie ,,WireWorld''.
+
+Za pomocą interfejsu graficznego program przedstawia zmiany pól jakie zachodzą na planszy zgodnie z zasadami gry.
+
+Pracę programu można konfigurować na kilka sposobów: wczytać początkową konfigurację planszy z pliku graficznego, stworzyć własną planszę za pomocą narzędzi do edycji pól lub w sposób mieszany, czyli wczytując konfigurację z pliku i dalsza jego edycja za pomocą edytora programu.
+
+Analizę i modyfikację planszy można przerwać lub wznowić w każdej chwili pracy programu. Gdy generacja jest wstrzymana, użytkownik może ręcznie zmodyfikować planszę lub zapisać jej obecny stan do pliku graficznego.
 
 \noindent\linia
 \section{Możliwości programu}
@@ -99,12 +105,25 @@ XXXXXXXXXXXXXXXXXXXXX
 \begin{itemize}
 \item Przycisk 'Load'' prowadzi do menu wyboru plików, gdzie mamy możliwość odnalezienia nazwy i lokalizacji pliku
 \item Plik zostaje wczytany i  od razu nałożony na plansze
-
-
 \end{itemize}
+
 \subsection{Animacja}
 \begin{itemize}
-\item 
+\item Klatka 1 przykładowej konfiguracji planszy
+\end{itemize}
+\includegraphics[width=\textwidth]{GenFrame1}
+\begin{itemize}
+\item Klatka 2 przykładowej konfiguracji planszy
+\end{itemize}
+\includegraphics[width=\textwidth]{GenFrame2}
+\begin{itemize}
+\item Klatka n-ta przykładowej konfiguracji planszy
+\end{itemize}
+\includegraphics[width=\textwidth]{GenFrame69}
+\begin{itemize}
+\item Powyższe zrzuty ekranu z pracy aplikacji ukazują pracę generatora nowych klatek wspieranego przez interfejs graficzny. 
+\item Powyższy przykład ukazuje również jaki jest domyślny sposób analizy planszy, czyli analizowanie planszy w trybie ,,bez ramkowym'', czyli komórki na granicach planszy wchodzą w interakcję z tymi po ,,drugiej stronie ekranu''.
+\item Zrzuty ekranu zostały wykonane przy domyślnym motywie kolorów reprezentujących stany komórek.
 \end{itemize}
 
 \noindent\linia
@@ -145,12 +164,68 @@ XXXXXXXXXXXXXXXXXXXXX
 	\item manageTemplateInsertion - porządkuje działania w metodach pod przyciskami do wstawiania wzorów
 	\end{itemize}
 \end{enumerate}
+
+\subsection{Implementacja pakietu ,,Generation''}
+\subsubsection{Zmiany w klasie GenerationsHandler}
+\begin{enumerate}
+\item Nazwa obiektu zmieniona na ,,GeneratorHandler'', aby lepiej wyrazić zastosowanie klasy.
+\item Dodano nowe pole ,,running'' typu boolean na potrzeby cechy wielowątkowości programu
+\item Dodano dwie metody set i get dla pola ,,mode''
+\item Dodano nowe pole ,,generator'' typu Generation.CellularAutomation
+\item Dodano funkcję ,,terminate'', która wstrzymuje pracę generatora ostatecznie, co pozwala na przerwanie pracy wątku generatora
+\end{enumerate}
+\subsubsection{Dodano klasę StatusIndicators}
+\begin{enumerate}
+\item Klasa ta zawiera nazwy stałych ( String ) i ich wartości ( int ), określające stany w których mogą się znajdować komórki planszy. tj.:
+\begin{enumerate}
+\item HEAD = 3
+\item TAIL = 2
+\item CONDUCTOR = 1
+\item EMPTY = 0
+\end{enumerate}
+\item Klasa zapewnia lepszą czytelność kodu dla innych klas z pakietu
+\end{enumerate}
+\subsubsection{Zmiany w klasie CellularAutomation}
+\begin{enumerate}
+\item Dodano pole ,,adapter'' typu Generation.BoardAdapter ułatwiający i standaryzujący dostęp do pól analizowanej planszy
+\item Zrezygnowano z pól ,,headColor'', ,,tailColor'', ,,conductorColor'' oraz ,,emptyFieldColor'', które nie znalazły zastosowania w tej klasie
+\item Dodano metodę ,,updateBoard'', która na podstawie informacji zawartych w polu ,,tmpMatrix'' uaktualnia stany komórek na planszy
+\item Dodano metodę ,,setBorderss'', która służy rolę przekaźnika instrukcji do obiektu ,,Neighbours''
+\end{enumerate}
+\subsubsection{Dodano klasę BoardAdapter}
+\begin{enumerate}
+\item Obiekt ten zawiera pola ,,list'' (ArrayList<Cell>), ,,height'' (int) i ,,width'' (int), które opisują oraz zawierają informacje o planszy komórek
+\item Klasa ta zapełnia łatwiejszy dostęp do komórek planszy
+\item Obecność klasy zwalnia pozostałe obiekty z wiedzy w jaki sposób komórki są przechowywane w pamięci
+\end{enumerate}
+\subsubsection{Zmiany w klasie Rules}
+\begin{enumerate}
+\item W instrukcjach warunkowych oraz przy wyrażaniu wartości zwracanych wykorzystano stałe z obiektu Generation.StatusIndicators, co przełożyło się na lepsza czytelność kodu oraz jego łatwiejsze zrozumienie.
+\item Brak zmian w strukturze oraz logice pracy obiektu
+\end{enumerate}
+\subsubsection{Zmiany w klasie Rules}
+\begin{enumerate}
+\item Zrezygnowano z pola ,,rectangleMap'' typu HashMap<String, javafx.scene.shape.Rectangle> na rzecz pola ,,adapter'' Generation.BoardAdapter
+\item Dodano pole ,,adapter'' typu Generation.BoardAdapter ułatwiający i standaryzujący dostęp do pól analizowanej planszy
+\item W wyniku analizy pracy programu dostrzeżono wspólne zachowanie dwóch funkcji ,,neighbours'' i ,,borderlessNeighbours''. W wyniku czego została wyodrębniona nowa metoda ,,analyzeCell'', która sprawdza czy komórka o podanym indeksie znajduje się na planszy oraz w przypadku, gdy pytana komórka jest w stanie ,,3'' - zwiększa licznik ,,heads''
+\end{enumerate}
+
+\subsection{Implementacja pakietu ,,IO''}
+\subsubsection{Zmiany w klasie IO}
+\begin{enumerate}
+\item xxxxxxxxxxxxxxx
+\end{enumerate}
+
+
+\noindent\linia
 \section{Opcje rozbudowy programu}
 \begin{enumerate}
 
-\item xxxxxxx
+\item Pakiet Generation został zaprojektowany do pracy z planszą o dowolnych rozmiarach, co oznacza, że możliwa jest stosunkowa szybka i prosta modyfikacja programu do pracy na różnych wymiarach planszy.
 
-\item xxxxxxx
+\item Pakiet Generation wspiera funkcję przełączania trybu analizy planszy pomiędzy trybami ,,z granicami'' oraz ,,bez granic''.
+
+\item Pakiet Generation wspiera opcję ustawienia szybkości generowania kolejnych klatek ukazujących stany komórek na planszy.
 
 \end{enumerate}
 \end{document}
