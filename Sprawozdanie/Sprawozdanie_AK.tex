@@ -122,7 +122,7 @@ Analizę i modyfikację planszy można przerwać lub wznowić w każdej chwili p
 \includegraphics[width=\textwidth]{GenFrame69}
 \begin{itemize}
 \item Powyższe zrzuty ekranu z pracy aplikacji ukazują pracę generatora nowych klatek wspieranego przez interfejs graficzny. 
-\item Powyższy przykład ukazuje również jaki jest domyślny sposób analizy planszy, czyli analizowanie planszy w trybie ,,bez ramkowym'', czyli komórki na granicach planszy wchodzą w interakcję z tymi po ,,drugiej stronie ekranu''.
+\item Przykład pokazuje również domyślny sposób analizy planszy - analizowanie planszy w trybie ,,bez ramkowym'', czyli komórki na granicach planszy wchodzą w interakcję z tymi po ,,drugiej stronie ekranu''.
 \item Zrzuty ekranu zostały wykonane przy domyślnym motywie kolorów reprezentujących stany komórek.
 \end{itemize}
 
@@ -168,9 +168,8 @@ Analizę i modyfikację planszy można przerwać lub wznowić w każdej chwili p
 \subsection{Implementacja pakietu ,,Generation''}
 \subsubsection{Zmiany w klasie GenerationsHandler}
 \begin{enumerate}
-\item Nazwa obiektu zmieniona na ,,GeneratorHandler'', aby lepiej wyrazić zastosowanie klasy.
+\item Zmieniono nazwę klasy z ,,GenerationsHandler'' na ,,GeneratorHandler'', aby lepiej wyrazić zastosowanie klasy.
 \item Dodano nowe pole ,,running'' typu boolean na potrzeby cechy wielowątkowości programu
-\item Dodano dwie metody set i get dla pola ,,mode''
 \item Dodano nowe pole ,,generator'' typu Generation.CellularAutomation
 \item Dodano funkcję ,,terminate'', która wstrzymuje pracę generatora ostatecznie, co pozwala na przerwanie pracy wątku generatora
 \end{enumerate}
