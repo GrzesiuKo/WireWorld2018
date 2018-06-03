@@ -203,7 +203,7 @@ Analizę i modyfikację planszy można przerwać lub wznowić w każdej chwili p
 \item W instrukcjach warunkowych oraz przy wyrażaniu wartości zwracanych wykorzystano stałe z obiektu Generation.StatusIndicators, co przełożyło się na lepsza czytelność kodu oraz jego łatwiejsze zrozumienie.
 \item Brak zmian w strukturze oraz logice pracy obiektu
 \end{enumerate}
-\subsubsection{Zmiany w klasie Rules}
+\subsubsection{Zmiany w klasie Neighbours}
 \begin{enumerate}
 \item Zrezygnowano z pola ,,rectangleMap'' typu HashMap<String, javafx.scene.shape.Rectangle> na rzecz pola ,,adapter'' Generation.BoardAdapter
 \item Dodano pole ,,adapter'' typu Generation.BoardAdapter ułatwiający i standaryzujący dostęp do pól analizowanej planszy
@@ -213,7 +213,15 @@ Analizę i modyfikację planszy można przerwać lub wznowić w każdej chwili p
 \subsection{Implementacja pakietu ,,IO''}
 \subsubsection{Zmiany w klasie IO}
 \begin{enumerate}
-\item xxxxxxxxxxxxxxx
+\item Zmieniono nazwę metody ,,fillBoard'' na ,,updateBoard'', aby lepiej oddać znaczenie działania funkcji
+\item Dodano trzy funkcje konwertujące sposób zapisu danych: ,,fileToIntMatrix'', ,,boardToRGBAMatrix'' oraz ,,intMatrixToArrayList''
+\item Dodano funkcję ,,updateRaster'' na potrzeby funkcji ,,saveBoard''
+\item Zrezygnowano z funkcji określających kolor na rzecz czytelności oraz muskularności kodu. Wykorzystano funkcje z klasy IO.ColorPicker.
+\item Dodano funkcję ,,readTemplate'' dla wsparcia funkcji wczytywania gotowych wzorów z plików.
+\end{enumerate}
+\subsubsection{Dodano klasię ColorPicker}
+\begin{enumerate}
+\item Klasa została utworzona jako wsparcie dla klasy IO.IO. Jej zadaniem jest określenie koloru na podstawie otrzymanych danych.
 \end{enumerate}
 
 
