@@ -5,11 +5,6 @@
 * Java
 * JavaFX
 
-
-## Version
-
-0.1
-
 ## Authors
 
 * **Grzegorz Kopyt**   
